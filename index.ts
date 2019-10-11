@@ -46,3 +46,9 @@ export function filterFn<T>(
 ): (dictionary: ReadonlyDictionary<T>) => Dictionary<T> {
     return dictionary => filter(dictionary, predicate);
 }
+
+export function forEach<T>(dictionary: ReadonlyDictionary<T>, f: (value: T, key: string) => void): void {
+    for (const [key, value] of entries(dictionary)) {
+        f(value, key);
+    }
+}
