@@ -25,3 +25,7 @@ export function map<T, U>(dictionary: ReadonlyDictionary<T>, f: (value: T, key: 
     }
     return result;
 }
+
+export function mapFn<T, U>(f: (value: T, key: string) => U): (dictionary: ReadonlyDictionary<T>) => Dictionary<U> {
+    return dictionary => map(dictionary, f);
+}
