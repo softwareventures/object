@@ -40,3 +40,9 @@ export function filter<T>(dictionary: ReadonlyDictionary<T>,
     }
     return result;
 }
+
+export function filterFn<T>(
+    predicate: (value: T, key: string) => boolean
+): (dictionary: ReadonlyDictionary<T>) => Dictionary<T> {
+    return dictionary => filter(dictionary, predicate);
+}
