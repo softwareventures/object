@@ -52,3 +52,7 @@ export function forEach<T>(dictionary: ReadonlyDictionary<T>, f: (value: T, key:
         f(value, key);
     }
 }
+
+export function forEachFn<T>(f: (value: T, key: string) => void): (dictionary: ReadonlyDictionary<T>) => void {
+    return dictionary => forEach(dictionary, f);
+}
