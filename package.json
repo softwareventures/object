@@ -1,0 +1,50 @@
+{
+  "private": true,
+  "name": "@softwareventures/dictionary",
+  "version": "0.0.0-development",
+  "description": "Pure functional dictionary manipulation and traversal",
+  "keywords": [
+    "dictionary",
+    "object",
+    "functional",
+    "lambda",
+    "typescript"
+  ],
+  "author": "Daniel Cassidy <mail@danielcassidy.me.uk>",
+  "homepage": "https://github.com/softwareventures/dictionary",
+  "bugs": "https://github.com/softwareventures/dictionary",
+  "repository": "github:softwareventures/dictionary",
+  "license": "ISC",
+  "scripts": {
+    "prepare": "tsc",
+    "semantic-release": "semantic-release",
+    "test": "tslint --project . && ava"
+  },
+  "dependencies": {
+    "tslib": "1.10.0"
+  },
+  "devDependencies": {
+    "@softwareventures/tsconfig": "2.0.0",
+    "@softwareventures/tslint-rules": "0.7.1",
+    "ava": "2.4.0",
+    "cz-conventional-changelog": "3.0.2",
+    "semantic-release": "15.13.24",
+    "ts-node": "8.4.1",
+    "tslint": "5.20.0",
+    "typescript": "3.6.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "ava": {
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  }
+}
