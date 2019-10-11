@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "@softwareventures/dictionary",
   "version": "0.0.0-development",
   "description": "Pure functional dictionary manipulation and traversal",
