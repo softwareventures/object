@@ -10,3 +10,7 @@ export const keys: <T>(dictionary: ReadonlyDictionary<T>) => string[] = Object.k
 export const values: <T>(dictionary: ReadonlyDictionary<T>) => T[] = Object.values;
 
 export const entries: <T>(dictionary: ReadonlyDictionary<T>) => Array<[string, T]> = Object.entries;
+
+export function empty<T>(dictionary: ReadonlyDictionary<T>): boolean {
+    return keys(dictionary).length === 0;
+}
