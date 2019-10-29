@@ -1935,9 +1935,9 @@ dezalgo@^1.0.0, dezalgo@~1.0.3:
     wrappy "1"
 
 dictionary-types@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/dictionary-types/-/dictionary-types-1.0.0.tgz#c74738702a2253dce2f2761f5e0a44f203f994fb"
-  integrity sha512-WBoXmEOlpph7MeUNAaHzf704J15wpTgic6xlnak47uuibcmOKEdYBwmVRR4mHtNz+K2MGLvxE2m1LojdqwpTPA==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/dictionary-types/-/dictionary-types-1.0.1.tgz#290286529b26e1215997dd2e98baf63f4711687b"
+  integrity sha512-JGpbd8PS4NP6L3JMA+zctLmUQLMC2btt++D8C/DxrxVnxfiXIlcPiHE6ParZBCiUasvm70CAzs6zKKN0evbwHg==
 
 diff@^4.0.1:
   version "4.0.1"
