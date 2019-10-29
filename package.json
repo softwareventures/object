@@ -19,6 +19,7 @@
     "semantic-release": "semantic-release",
     "test": "tslint --project . && ava"
   },
+  "sideEffects": false,
   "dependencies": {
     "dictionary-types": "^1.0.0",
     "tslib": "1.10.0"
