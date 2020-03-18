@@ -1,7 +1,7 @@
 import {Dictionary, Key, ReadonlyDictionary} from "dictionary-types";
 
 /** Creates a shallow copy of the specified dictionary. */
-export function copy<T>(dictionary: ReadonlyDictionary<T>): Dictionary<T> {
+export function copy<T, K extends Key, L extends K = K>(dictionary: ReadonlyDictionary<T, K>): Dictionary<T, L> {
     return {...dictionary};
 }
 
