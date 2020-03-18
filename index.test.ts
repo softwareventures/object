@@ -1,6 +1,6 @@
 import test from "ava";
 import {Dictionary} from "dictionary-types";
-import {entries, filter, map, values} from "./index";
+import {entries, filter, keys, map, values} from "./index";
 
 test("map", t => {
     t.deepEqual(map({a: 1, b: 2}, value => value + 1), {a: 2, b: 3});
@@ -17,6 +17,14 @@ interface Furniture {
     readonly hatstand: number;
     readonly sofa: string;
 }
+
+test("keys", t => {
+    const furniture: Furniture = {hatstand: 3, sofa: "comfy"};
+    t.deepEqual(keys(furniture), ["hatstand", "sofa"]);
+    const dictionary: Dictionary<number> = {a: 1, b: 2};
+    const dictionaryKeys: string[] = keys(dictionary);
+    t.deepEqual(dictionaryKeys, ["a", "b"]);
+});
 
 test("values", t => {
     const furniture: Furniture = {hatstand: 3, sofa: "comfy"};

@@ -5,8 +5,15 @@ export function copy<T>(dictionary: ReadonlyDictionary<T>): Dictionary<T> {
     return {...dictionary};
 }
 
+// @ts-ignore duplicate identifier: These overrides constitute the exported declaration, the implementation is below.
+export function keys<T, K extends string | number | symbol>(dictionary: ReadonlyDictionary<T, K>): K[];
+// @ts-ignore duplicate identifier: These overrides constitute the exported declaration, the implementation is below.
+export function keys<T>(dictionary: Readonly<T>): Array<keyof T>;
+
+/* @internal This implementation is for internal use only, the exported declaration is above */
+// @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
 // tslint:disable-next-line:no-unbound-method
-export const keys: <T>(dictionary: ReadonlyDictionary<T>) => string[] = Object.keys;
+export const keys: <T>(dictionary: Readonly<T>) => Array<keyof T> = Object.keys;
 
 // tslint:disable-next-line:no-unbound-method
 export const values: <T>(dictionary: Readonly<T>) => Array<T[keyof T]> = Object.values;
