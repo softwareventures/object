@@ -1,4 +1,4 @@
-import {Dictionary, ReadonlyDictionary} from "dictionary-types";
+import {Dictionary, Key, ReadonlyDictionary} from "dictionary-types";
 
 /** Creates a shallow copy of the specified dictionary. */
 export function copy<T>(dictionary: ReadonlyDictionary<T>): Dictionary<T> {
@@ -6,7 +6,7 @@ export function copy<T>(dictionary: ReadonlyDictionary<T>): Dictionary<T> {
 }
 
 // @ts-ignore duplicate identifier: These overrides constitute the exported declaration, the implementation is below.
-export function keys<T, K extends keyof any>(dictionary: ReadonlyDictionary<T, K>): K[];
+export function keys<T, K extends Key>(dictionary: ReadonlyDictionary<T, K>): K[];
 // @ts-ignore duplicate identifier: These overrides constitute the exported declaration, the implementation is below.
 export function keys<T>(dictionary: Readonly<T>): Array<keyof T>;
 
@@ -19,7 +19,7 @@ export const keys: <T>(dictionary: Readonly<T>) => Array<keyof T> = Object.keys;
 export const values: <T>(dictionary: Readonly<T>) => Array<T[keyof T]> = Object.values;
 
 // @ts-ignore duplicate identifier: These overrides constitute the exported declaration, the implementation is below.
-export function entries<T, K extends keyof any>(dictionary: ReadonlyDictionary<T, K>): Array<[K, T]>;
+export function entries<T, K extends Key>(dictionary: ReadonlyDictionary<T, K>): Array<[K, T]>;
 // @ts-ignore duplicate identifier: These overrides constitute the exported declaration, the implementation is below.
 export function entries<T>(dictionary: Readonly<T>): Array<[keyof T, T[keyof T]]>;
 
