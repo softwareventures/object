@@ -9,7 +9,7 @@ export function copy<T>(dictionary: ReadonlyDictionary<T>): Dictionary<T> {
 export const keys: <T>(dictionary: ReadonlyDictionary<T>) => string[] = Object.keys;
 
 // tslint:disable-next-line:no-unbound-method
-export const values: <T>(dictionary: ReadonlyDictionary<T>) => T[] = Object.values;
+export const values: <T>(dictionary: Readonly<T>) => Array<T[keyof T]> = Object.values;
 
 // tslint:disable-next-line:no-unbound-method
 export const entries: <T>(dictionary: ReadonlyDictionary<T>) => Array<[string, T]> = Object.entries;
