@@ -1,7 +1,7 @@
 import {Dictionary, Key, ReadonlyDictionary} from "dictionary-types";
 
 /** Creates a new dictionary with the specified properties. */
-export function dictionary<T, K extends Key>(properties?: ReadonlyDictionary<T, K>): Dictionary<T, K> {
+export function dictionary<T, K extends Key = string>(properties?: ReadonlyDictionary<T, K>): Dictionary<T, K> {
     return copy(properties ?? {} as ReadonlyDictionary<T, K>);
 }
 
