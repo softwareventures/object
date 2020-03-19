@@ -1,5 +1,10 @@
 import {Dictionary, Key, ReadonlyDictionary} from "dictionary-types";
 
+/** Creates a new dictionary with the specified properties. */
+export function dictionary<T, K extends Key>(properties?: ReadonlyDictionary<T, K>): Dictionary<T, K> {
+    return copy(properties ?? {} as ReadonlyDictionary<T, K>);
+}
+
 /** Creates a shallow copy of the specified dictionary. */
 export function copy<T, K extends Key, L extends K = K>(dictionary: ReadonlyDictionary<T, K>): Dictionary<T, L> {
     return Object.assign(Object.create(null), dictionary);
