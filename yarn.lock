@@ -277,10 +277,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
   integrity sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==
 
-"@softwareventures/eslint-config@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@softwareventures/eslint-config/-/eslint-config-2.0.0.tgz#a772f40d9d339e07823bb39e5b9c6ff7c28e4fe6"
-  integrity sha512-LLlYbAMJN7eygB8j1+EWqiVM1Cxcvtp6EM6fsyq5PR/bQpMOru6Uo5SG3Gre3ZY+d5bSyervCVeze2qs5/jLFw==
+"@softwareventures/eslint-config@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@softwareventures/eslint-config/-/eslint-config-2.0.1.tgz#9169897ad6f807b96cf1f772b160134851f17725"
+  integrity sha512-6HEdVlbYLo8O8KkCvz31QMQz/p7NayEt2X3O79IT3KOO4muUJyEnXg00z/6J1xHjyHWScABAsJ5XO6HUDKmheA==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.31.0 || ^3.0.0"
     "@typescript-eslint/eslint-plugin-tslint" "^2.31.0 || ^3.0.0"
