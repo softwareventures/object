@@ -4,7 +4,7 @@ import {entries, filter, keys, map, values} from "./index";
 
 test("map", t => {
     t.deepEqual(map({a: 1, b: 2}, value => value + 1), {a: 2, b: 3});
-    t.deepEqual(map({a: 1, b: 2}, (value, key) => (value * 2) + key), {a: "2a", b: "4b"});
+    t.deepEqual(map({a: 1, b: 2}, (value, key) => (value * 2).toString(10) + key), {a: "2a", b: "4b"});
 });
 
 test("filter", t => {
