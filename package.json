@@ -15,9 +15,11 @@
   "repository": "github:softwareventures/dictionary",
   "license": "ISC",
   "scripts": {
+    "fix": "eslint . --fix && prettier --write .",
+    "lint": "eslint . && prettier --check .",
     "prepare": "tsc",
     "semantic-release": "semantic-release",
-    "test": "tslint --project . && ava"
+    "test": "ava"
   },
   "sideEffects": false,
   "dependencies": {
@@ -25,15 +27,25 @@
     "tslib": "2.0.0"
   },
   "devDependencies": {
+    "@softwareventures/eslint-config": "1.7.0",
+    "@softwareventures/prettier-config": "1.0.2",
     "@softwareventures/tsconfig": "2.2.0",
-    "@softwareventures/tslint-rules": "0.9.1",
     "ava": "3.10.1",
     "cz-conventional-changelog": "3.2.0",
+    "eslint": "7.5.0",
+    "prettier": "2.0.5",
     "semantic-release": "17.1.1",
     "ts-node": "8.10.2",
-    "tslint": "6.1.2",
     "typescript": "3.9.7"
   },
+  "eslintConfig": {
+    "root": true,
+    "extends": "@softwareventures",
+    "rules": {
+      "@typescript-eslint/ban-ts-comment": "off"
+    }
+  },
+  "prettier": "@softwareventures/prettier-config",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"

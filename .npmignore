@@ -1,7 +1,8 @@
 /.idea
 /yarn.lock
 /tsconfig.json
-/tslint.json
+/tsconfig.test.json
+/.eslintignore
 /.github
 /renovate.json
 *.ts
