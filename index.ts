@@ -37,6 +37,19 @@ export function empty<T>(dictionary: ReadonlyDictionary<T>): boolean {
     return keys(dictionary).length === 0;
 }
 
+export function merge<T>(...dictionaries: Array<ReadonlyDictionary<T>>): Dictionary<T> {
+    const result: Dictionary<T> = Object.create(null);
+    for (let i=0; i<dictionaries.length; ++i) {
+        Object.assign(result, dictionaries[i]);
+    }
+    return result;
+}
+
+export function mergeFn<T>(...dictionaries: Array<ReadonlyDictionary<T>>): (...dictionaries: Array<ReadonlyDictionary<T>>) => Dictionary<T> {
+    const a = merge(...dictionaries);
+    return (...b) => merge(a, ...b);
+}
+
 export function map<T, U>(dictionary: ReadonlyDictionary<T>, f: (value: T, key: string) => U): Dictionary<U> {
     const result: Dictionary<U> = {};
     for (const [key, value] of entries(dictionary)) {
