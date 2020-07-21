@@ -1,12 +1,16 @@
 import {Dictionary, Key, ReadonlyDictionary} from "dictionary-types";
 
 /** Creates a new dictionary with the specified properties. */
-export function dictionary<T, K extends Key = string>(properties?: ReadonlyDictionary<T, K>): Dictionary<T, K> {
-    return copy(properties ?? {} as ReadonlyDictionary<T, K>);
+export function dictionary<T, K extends Key = string>(
+    properties?: ReadonlyDictionary<T, K>
+): Dictionary<T, K> {
+    return copy(properties ?? ({} as ReadonlyDictionary<T, K>));
 }
 
 /** Creates a shallow copy of the specified dictionary. */
-export function copy<T, K extends Key, L extends K = K>(dictionary: ReadonlyDictionary<T, K>): Dictionary<T, L> {
+export function copy<T, K extends Key, L extends K = K>(
+    dictionary: ReadonlyDictionary<T, K>
+): Dictionary<T, L> {
     return Object.assign(Object.create(null), dictionary);
 }
 
@@ -39,18 +43,23 @@ export function empty<T>(dictionary: ReadonlyDictionary<T>): boolean {
 
 export function merge<T>(...dictionaries: Array<ReadonlyDictionary<T>>): Dictionary<T> {
     const result: Dictionary<T> = Object.create(null);
-    for (let i=0; i<dictionaries.length; ++i) {
+    for (let i = 0; i < dictionaries.length; ++i) {
         Object.assign(result, dictionaries[i]);
     }
     return result;
 }
 
-export function mergeFn<T>(...dictionaries: Array<ReadonlyDictionary<T>>): (...dictionaries: Array<ReadonlyDictionary<T>>) => Dictionary<T> {
+export function mergeFn<T>(
+    ...dictionaries: Array<ReadonlyDictionary<T>>
+): (...dictionaries: Array<ReadonlyDictionary<T>>) => Dictionary<T> {
     const a = merge(...dictionaries);
     return (...b) => merge(a, ...b);
 }
 
-export function map<T, U>(dictionary: ReadonlyDictionary<T>, f: (value: T, key: string) => U): Dictionary<U> {
+export function map<T, U>(
+    dictionary: ReadonlyDictionary<T>,
+    f: (value: T, key: string) => U
+): Dictionary<U> {
     const result: Dictionary<U> = {};
     for (const [key, value] of entries(dictionary)) {
         result[key] = f(value, key);
@@ -58,12 +67,16 @@ export function map<T, U>(dictionary: ReadonlyDictionary<T>, f: (value: T, key: 
     return result;
 }
 
-export function mapFn<T, U>(f: (value: T, key: string) => U): (dictionary: ReadonlyDictionary<T>) => Dictionary<U> {
+export function mapFn<T, U>(
+    f: (value: T, key: string) => U
+): (dictionary: ReadonlyDictionary<T>) => Dictionary<U> {
     return dictionary => map(dictionary, f);
 }
 
-export function filter<T>(dictionary: ReadonlyDictionary<T>,
-                          predicate: (value: T, key: string) => boolean): Dictionary<T> {
+export function filter<T>(
+    dictionary: ReadonlyDictionary<T>,
+    predicate: (value: T, key: string) => boolean
+): Dictionary<T> {
     const result: Dictionary<T> = {};
     for (const [key, value] of entries(dictionary)) {
         if (predicate(value, key)) {
@@ -79,12 +92,17 @@ export function filterFn<T>(
     return dictionary => filter(dictionary, predicate);
 }
 
-export function forEach<T>(dictionary: ReadonlyDictionary<T>, f: (value: T, key: string) => void): void {
+export function forEach<T>(
+    dictionary: ReadonlyDictionary<T>,
+    f: (value: T, key: string) => void
+): void {
     for (const [key, value] of entries(dictionary)) {
         f(value, key);
     }
 }
 
-export function forEachFn<T>(f: (value: T, key: string) => void): (dictionary: ReadonlyDictionary<T>) => void {
+export function forEachFn<T>(
+    f: (value: T, key: string) => void
+): (dictionary: ReadonlyDictionary<T>) => void {
     return dictionary => forEach(dictionary, f);
 }
