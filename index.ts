@@ -21,10 +21,8 @@ export function keys<T>(dictionary: Readonly<T>): Array<keyof T>;
 
 /* @internal This implementation is for internal use only, the exported declaration is above */
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
-// tslint:disable-next-line:no-unbound-method
 export const keys: <T>(dictionary: Readonly<T>) => Array<keyof T> = Object.keys;
 
-// tslint:disable-next-line:no-unbound-method
 export const values: <T>(dictionary: Readonly<T>) => Array<T[keyof T]> = Object.values;
 
 // @ts-ignore duplicate identifier: These overrides constitute the exported declaration, the implementation is below.
@@ -34,7 +32,6 @@ export function entries<T>(dictionary: Readonly<T>): Array<[keyof T, T[keyof T]]
 
 /* @internal This implementation is for internal use only, the exported declaration is above */
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
-// tslint:disable-next-line:no-unbound-method
 export const entries: <T>(dictionary: Readonly<T>) => Array<[keyof T, T[keyof T]]> = Object.entries;
 
 export function empty<T>(dictionary: ReadonlyDictionary<T>): boolean {
