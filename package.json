@@ -31,7 +31,7 @@
     "@softwareventures/prettier-config": "1.0.2",
     "@softwareventures/semantic-release-config": "1.1.1",
     "@softwareventures/tsconfig": "2.3.2",
-    "ava": "3.12.1",
+    "ava": "3.13.0",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "7.10.0",
     "prettier": "2.1.2",
