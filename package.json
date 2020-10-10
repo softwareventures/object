@@ -24,7 +24,7 @@
   "sideEffects": false,
   "dependencies": {
     "dictionary-types": "^1.2.0",
-    "tslib": "2.0.2"
+    "tslib": "2.0.3"
   },
   "devDependencies": {
     "@softwareventures/eslint-config": "3.3.0",
