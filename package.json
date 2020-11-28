@@ -34,7 +34,7 @@
     "ava": "3.13.0",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "7.14.0",
-    "prettier": "2.2.0",
+    "prettier": "2.2.1",
     "semantic-release": "17.3.0",
     "ts-node": "9.0.0",
     "typescript": "4.1.2"
