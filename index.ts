@@ -70,6 +70,14 @@ export function mapFn<T, U>(
     return dictionary => map(dictionary, f);
 }
 
+export function filter<T, U extends T>(
+    dictionary: ReadonlyDictionary<T>,
+    predicate: (value: T) => value is U
+): Dictionary<U>;
+export function filter<T>(
+    dictionary: ReadonlyDictionary<T>,
+    predicate: (value: T, key: string) => boolean
+): Dictionary<T>;
 export function filter<T>(
     dictionary: ReadonlyDictionary<T>,
     predicate: (value: T, key: string) => boolean
@@ -83,6 +91,12 @@ export function filter<T>(
     return result;
 }
 
+export function filterFn<T, U extends T>(
+    predicate: (value: T) => value is U
+): (dictionary: ReadonlyDictionary<T>) => Dictionary<U>;
+export function filterFn<T>(
+    predicate: (value: T, key: string) => boolean
+): (dictionary: ReadonlyDictionary<T>) => Dictionary<T>;
 export function filterFn<T>(
     predicate: (value: T, key: string) => boolean
 ): (dictionary: ReadonlyDictionary<T>) => Dictionary<T> {
