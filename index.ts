@@ -103,6 +103,16 @@ export function filterFn<T>(
     return dictionary => filter(dictionary, predicate);
 }
 
+export function excludeNull<T>(
+    dictionary: ReadonlyDictionary<T | undefined | null>
+): Dictionary<T> {
+    return filter(dictionary, notNull);
+}
+
+function notNull<T>(value: T | undefined | null): value is T {
+    return value != null;
+}
+
 export function forEach<T>(
     dictionary: ReadonlyDictionary<T>,
     f: (value: T, key: string) => void
