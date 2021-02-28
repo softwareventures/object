@@ -20,7 +20,7 @@ test("filter", t => {
         {b: 2, e: 24}
     );
     t.deepEqual(
-        filter(dictionary, (value, key) => value % 2 === 1 && key !== "c"),
+        filter(dictionary, (value: number, key: string) => value % 2 === 1 && key !== "c"),
         {a: 1, d: 17}
     );
 });
