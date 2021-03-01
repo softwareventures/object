@@ -22,12 +22,16 @@ export function keys<T extends Key>(dictionary: Readonly<Record<T, unknown>>): s
 export const keys: <T extends Key>(dictionary: Readonly<Record<T, unknown>>) => string[] =
     Object.keys;
 
-export const values: <T>(dictionary: Readonly<T>) => Array<T[keyof T]> = Object.values;
+// @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.
+export function values<TKey extends Key, TValue>(
+    dictionary: Readonly<Record<TKey, TValue>>
+): TValue[];
 
-// @ts-ignore duplicate identifier: These overrides constitute the exported declaration, the implementation is below.
-export function entries<T, K extends Key>(dictionary: ReadonlyDictionary<T, K>): Array<[K, T]>;
-// @ts-ignore duplicate identifier: These overrides constitute the exported declaration, the implementation is below.
-export function entries<T>(dictionary: Readonly<T>): Array<[keyof T, T[keyof T]]>;
+/* @internal This implementation is for internal use only, the exported declaration is above. */
+// @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
+export const values: <TKey extends Key, TValue>(
+    dictionary: Readonly<Record<TKey, TValue>>
+) => TValue[] = Object.values;
 
 /* @internal This implementation is for internal use only, the exported declaration is above */
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
