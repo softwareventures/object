@@ -14,14 +14,13 @@ export function copy<T, K extends Key, L extends K = K>(
     return Object.assign(Object.create(null), dictionary);
 }
 
-// @ts-ignore duplicate identifier: These overrides constitute the exported declaration, the implementation is below.
-export function keys<T, K extends Key>(dictionary: ReadonlyDictionary<T, K>): K[];
-// @ts-ignore duplicate identifier: These overrides constitute the exported declaration, the implementation is below.
-export function keys<T>(dictionary: Readonly<T>): Array<keyof T>;
+// @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.
+export function keys<T extends Key>(dictionary: Readonly<Record<T, unknown>>): string[];
 
 /* @internal This implementation is for internal use only, the exported declaration is above */
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
-export const keys: <T>(dictionary: Readonly<T>) => Array<keyof T> = Object.keys;
+export const keys: <T extends Key>(dictionary: Readonly<Record<T, unknown>>) => string[] =
+    Object.keys;
 
 export const values: <T>(dictionary: Readonly<T>) => Array<T[keyof T]> = Object.values;
 
