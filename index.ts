@@ -33,9 +33,16 @@ export const values: <TKey extends Key, TValue>(
     dictionary: Readonly<Record<TKey, TValue>>
 ) => TValue[] = Object.values;
 
-/* @internal This implementation is for internal use only, the exported declaration is above */
+// @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.
+export function entries<TKey extends Key, TValue>(
+    dictionary: Readonly<Record<TKey, TValue>>
+): Array<[string, TValue]>;
+
+/* @internal This implementation is for internal use only, the exported declaration is above. */
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
-export const entries: <T>(dictionary: Readonly<T>) => Array<[keyof T, T[keyof T]]> = Object.entries;
+export const entries: <TKey extends Key, TValue>(
+    dictionary: Readonly<Record<TKey, TValue>>
+) => Array<[string, TValue]> = Object.entries;
 
 export function empty<T>(dictionary: ReadonlyDictionary<T>): boolean {
     return keys(dictionary).length === 0;
