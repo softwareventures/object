@@ -5,8 +5,6 @@
 /.github
 /renovate.json
 /.snyk
-*.ts
-!*.d.ts
 
 # yarn and npm
 package-lock.json
