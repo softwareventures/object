@@ -22,6 +22,9 @@
     "test": "ava"
   },
   "sideEffects": false,
+  "engines": {
+    "node": "^12 || ^14 || >=16"
+  },
   "dependencies": {
     "dictionary-types": "^1.2.0",
     "tslib": "2.3.0"
@@ -30,7 +33,7 @@
     "@softwareventures/eslint-config": "3.6.3",
     "@softwareventures/prettier-config": "1.0.2",
     "@softwareventures/semantic-release-config": "1.2.0",
-    "@softwareventures/tsconfig": "2.3.3",
+    "@softwareventures/tsconfig": "5.1.0",
     "ava": "3.15.0",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "7.30.0",
