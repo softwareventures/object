@@ -4,9 +4,9 @@
   "description": "Pure functional dictionary manipulation and traversal",
   "keywords": [
     "dictionary",
-    "object",
     "functional",
     "lambda",
+    "object",
     "typescript"
   ],
   "author": "Daniel Cassidy <mail@danielcassidy.me.uk>",
