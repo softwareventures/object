@@ -22,6 +22,9 @@
     "test": "ava"
   },
   "sideEffects": false,
+  "engines": {
+    "node": "^12 || ^14 || >=16"
+  },
   "dependencies": {
     "dictionary-types": "^1.2.0",
     "tslib": "2.3.0"
