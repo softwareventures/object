@@ -4,9 +4,9 @@
   "description": "Pure functional dictionary manipulation and traversal",
   "keywords": [
     "dictionary",
-    "object",
     "functional",
     "lambda",
+    "object",
     "typescript"
   ],
   "author": "Daniel Cassidy <mail@danielcassidy.me.uk>",
@@ -15,8 +15,8 @@
   "repository": "github:softwareventures/dictionary",
   "license": "ISC",
   "scripts": {
-    "fix": "eslint . --fix && prettier --write .",
-    "lint": "eslint . && prettier --check .",
+    "fix": "tsc --noEmit && eslint . --fix && prettier --write .",
+    "lint": "tsc --noEmit && eslint . && prettier --check .",
     "prepare": "tsc",
     "semantic-release": "semantic-release",
     "test": "ava"
