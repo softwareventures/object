@@ -1749,10 +1749,10 @@ dezalgo@^1.0.0:
     asap "^2.0.0"
     wrappy "1"
 
-"dictionary-types@^1.2.0 || ^2.0.0":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/dictionary-types/-/dictionary-types-2.0.1.tgz#9f0b9b4bcde6237e241bcd7ea1d255be450f6e22"
-  integrity sha512-oGwLOZSgaS8JDIbe42MCTZ+/IUFLaSxfZ1agSwCojz+9K2MxnnAY/YPoKTGHawxnLKCHHN2bQDrP271Glpf7jA==
+"dictionary-types@^1.2.0 || ^2.0.0 || ^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/dictionary-types/-/dictionary-types-3.0.0.tgz#55e17fd87bf61053a660ae7cedc26d211b4b22aa"
+  integrity sha512-Wb0hqm1sCr0eCvy6VzBD892PDO4WTQn9Q2eWG8xUQ7lldb7w3oaR81gZLjB5VADlNIU9ICKPcj9atY7VNpToTg==
 
 diff@^4.0.1:
   version "4.0.2"
