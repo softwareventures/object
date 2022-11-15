@@ -1,5 +1,5 @@
 import test from "ava";
-import {Dictionary} from "dictionary-types";
+import type {Dictionary} from "dictionary-types";
 import {entries, filter, keys, map, values} from "./index";
 
 test("map", t => {

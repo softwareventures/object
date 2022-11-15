@@ -1,9 +1,10 @@
-import {Dictionary, Key, ReadonlyDictionary} from "dictionary-types";
+import type {Dictionary, Key, ReadonlyDictionary} from "dictionary-types";
 
 /** Creates a new dictionary with the specified properties. */
 export function dictionary<T, K extends Key = string>(
     properties?: ReadonlyDictionary<T, K>
 ): Dictionary<T, K> {
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     return copy(properties ?? ({} as ReadonlyDictionary<T, K>));
 }
 
@@ -11,6 +12,7 @@ export function dictionary<T, K extends Key = string>(
 export function copy<T, K extends Key, L extends K = K>(
     dictionary: ReadonlyDictionary<T, K>
 ): Dictionary<T, L> {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return Object.assign(Object.create(null), dictionary);
 }
 
@@ -49,6 +51,7 @@ export function empty<T>(dictionary: ReadonlyDictionary<T>): boolean {
 }
 
 export function merge<T>(...dictionaries: Array<ReadonlyDictionary<T>>): Dictionary<T> {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const result: Dictionary<T> = Object.create(null);
     for (let i = 0; i < dictionaries.length; ++i) {
         Object.assign(result, dictionaries[i]);
@@ -135,5 +138,5 @@ export function forEach<T>(
 export function forEachFn<T>(
     f: (value: T, key: string) => void
 ): (dictionary: ReadonlyDictionary<T>) => void {
-    return dictionary => forEach(dictionary, f);
+    return dictionary => void forEach(dictionary, f);
 }
