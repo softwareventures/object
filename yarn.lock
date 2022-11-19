@@ -525,10 +525,10 @@
     lodash "^4.17.4"
     read-pkg-up "^7.0.0"
 
-"@softwareventures/eslint-config@7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@softwareventures/eslint-config/-/eslint-config-7.0.1.tgz#641ff1c1fe87a85c6b2a13f56f130f0928281edb"
-  integrity sha512-SpPFanjPPYDnra14T9iWydv2ZXwMmonepvSm0L56hhDLh/ARiorRMNqAssYTJPhmaPnw4mD14rcZflBVZ8g1mg==
+"@softwareventures/eslint-config@7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@softwareventures/eslint-config/-/eslint-config-7.1.0.tgz#bde202631081fd1cc977cf04ad5ba9734a7496f0"
+  integrity sha512-RsMItMbBCVXQRzQ9JHJlOzS/ZLRvpfBMJfDxZyN/V+77oHA5uSpiTjXwUV98iS8MyD9ZbBbvXg18h5l7mUjKrw==
   dependencies:
     tslib "^2.3.1"
 
