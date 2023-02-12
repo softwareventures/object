@@ -70,7 +70,7 @@ export function map<T, U>(
     dictionary: ReadonlyDictionary<T>,
     f: (value: T, key: string) => U
 ): Dictionary<U> {
-    const result: Dictionary<U> = {};
+    const result = Object.create(null) as Dictionary<U>;
     for (const [key, value] of entries(dictionary)) {
         result[key] = f(value, key);
     }
