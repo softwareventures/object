@@ -1,5 +1,3 @@
-import type {Dictionary, ReadonlyDictionary} from "dictionary-types";
-
 /** Union of all types that can be used as the key for property access.
  *
  * The type of `x` in the expression `o[x]` (for arbitrary `o`).
@@ -9,16 +7,16 @@ export type Key = keyof never;
 
 /** Creates a new dictionary with the specified properties. */
 export function dictionary<T, K extends Key = string>(
-    properties?: ReadonlyDictionary<T, K>
-): Dictionary<T, K> {
+    properties?: Readonly<Record<K, T>>
+): Record<K, T> {
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    return copy(properties ?? ({} as ReadonlyDictionary<T, K>));
+    return copy(properties ?? ({} as Readonly<Record<K, T>>));
 }
 
 /** Creates a shallow copy of the specified dictionary. */
 export function copy<T, K extends Key, L extends K = K>(
-    dictionary: ReadonlyDictionary<T, K>
-): Dictionary<T, L> {
+    dictionary: Readonly<Record<K, T>>
+): Record<K, T> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return Object.assign(Object.create(null), dictionary);
 }
@@ -53,13 +51,13 @@ export const entries: <TKey extends Key, TValue>(
     dictionary: Readonly<Record<TKey, TValue>>
 ) => Array<[string, TValue]> = Object.entries;
 
-export function empty<T>(dictionary: ReadonlyDictionary<T, Key>): boolean {
+export function empty<T>(dictionary: Readonly<Record<Key, T>>): boolean {
     return keys(dictionary).length === 0;
 }
 
-export function merge<T>(...dictionaries: Array<ReadonlyDictionary<T>>): Dictionary<T> {
+export function merge<T>(...dictionaries: Array<Readonly<Record<string, T>>>): Record<string, T> {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const result: Dictionary<T> = Object.create(null);
+    const result: Record<string, T> = Object.create(null);
     for (let i = 0; i < dictionaries.length; ++i) {
         Object.assign(result, dictionaries[i]);
     }
@@ -67,17 +65,17 @@ export function merge<T>(...dictionaries: Array<ReadonlyDictionary<T>>): Diction
 }
 
 export function mergeFn<T>(
-    ...dictionaries: Array<ReadonlyDictionary<T>>
-): (...dictionaries: Array<ReadonlyDictionary<T>>) => Dictionary<T> {
+    ...dictionaries: Array<Readonly<Record<string, T>>>
+): (...dictionaries: Array<Readonly<Record<string, T>>>) => Record<string, T> {
     const a = merge(...dictionaries);
     return (...b) => merge(a, ...b);
 }
 
 export function map<T, U>(
-    dictionary: ReadonlyDictionary<T>,
+    dictionary: Readonly<Record<string, T>>,
     f: (value: T, key: string) => U
-): Dictionary<U> {
-    const result = Object.create(null) as Dictionary<U>;
+): Record<string, U> {
+    const result = Object.create(null) as Record<string, U>;
     for (const [key, value] of entries(dictionary)) {
         result[key] = f(value, key);
     }
@@ -86,23 +84,23 @@ export function map<T, U>(
 
 export function mapFn<T, U>(
     f: (value: T, key: string) => U
-): (dictionary: ReadonlyDictionary<T>) => Dictionary<U> {
+): (dictionary: Readonly<Record<string, T>>) => Record<string, U> {
     return dictionary => map(dictionary, f);
 }
 
 export function filter<T, U extends T>(
-    dictionary: ReadonlyDictionary<T>,
+    dictionary: Readonly<Record<string, T>>,
     predicate: (value: T) => value is U
-): Dictionary<U>;
+): Record<string, U>;
 export function filter<T>(
-    dictionary: ReadonlyDictionary<T>,
+    dictionary: Readonly<Record<string, T>>,
     predicate: (value: T, key: string) => boolean
-): Dictionary<T>;
+): Record<string, T>;
 export function filter<T>(
-    dictionary: ReadonlyDictionary<T>,
+    dictionary: Readonly<Record<string, T>>,
     predicate: (value: T, key: string) => boolean
-): Dictionary<T> {
-    const result = Object.create(null) as Dictionary<T>;
+): Record<string, T> {
+    const result = Object.create(null) as Record<string, T>;
     for (const [key, value] of entries(dictionary)) {
         if (predicate(value, key)) {
             result[key] = value;
@@ -113,19 +111,19 @@ export function filter<T>(
 
 export function filterFn<T, U extends T>(
     predicate: (value: T) => value is U
-): (dictionary: ReadonlyDictionary<T>) => Dictionary<U>;
+): (dictionary: Readonly<Record<string, T>>) => Record<string, U>;
 export function filterFn<T>(
     predicate: (value: T, key: string) => boolean
-): (dictionary: ReadonlyDictionary<T>) => Dictionary<T>;
+): (dictionary: Readonly<Record<string, T>>) => Record<string, T>;
 export function filterFn<T>(
     predicate: (value: T, key: string) => boolean
-): (dictionary: ReadonlyDictionary<T>) => Dictionary<T> {
+): (dictionary: Readonly<Record<string, T>>) => Record<string, T> {
     return dictionary => filter(dictionary, predicate);
 }
 
 export function excludeNull<T>(
-    dictionary: ReadonlyDictionary<T | undefined | null>
-): Dictionary<T> {
+    dictionary: Readonly<Record<string, T | undefined | null>>
+): Record<string, T> {
     return filter(dictionary, notNull);
 }
 
@@ -134,7 +132,7 @@ function notNull<T>(value: T | undefined | null): value is T {
 }
 
 export function forEach<T>(
-    dictionary: ReadonlyDictionary<T>,
+    dictionary: Readonly<Record<string, T>>,
     f: (value: T, key: string) => void
 ): void {
     for (const [key, value] of entries(dictionary)) {
@@ -144,6 +142,6 @@ export function forEach<T>(
 
 export function forEachFn<T>(
     f: (value: T, key: string) => void
-): (dictionary: ReadonlyDictionary<T>) => void {
+): (dictionary: Readonly<Record<string, T>>) => void {
     return dictionary => void forEach(dictionary, f);
 }
