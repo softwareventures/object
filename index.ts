@@ -95,7 +95,7 @@ export function filter<T>(
     dictionary: ReadonlyDictionary<T>,
     predicate: (value: T, key: string) => boolean
 ): Dictionary<T> {
-    const result: Dictionary<T> = {};
+    const result = Object.create(null) as Dictionary<T>;
     for (const [key, value] of entries(dictionary)) {
         if (predicate(value, key)) {
             result[key] = value;
