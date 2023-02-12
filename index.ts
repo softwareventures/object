@@ -46,7 +46,7 @@ export const entries: <TKey extends Key, TValue>(
     dictionary: Readonly<Record<TKey, TValue>>
 ) => Array<[string, TValue]> = Object.entries;
 
-export function empty<T>(dictionary: ReadonlyDictionary<T>): boolean {
+export function empty<T>(dictionary: ReadonlyDictionary<T, Key>): boolean {
     return keys(dictionary).length === 0;
 }
 
