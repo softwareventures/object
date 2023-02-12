@@ -1,4 +1,11 @@
-import type {Dictionary, Key, ReadonlyDictionary} from "dictionary-types";
+import type {Dictionary, ReadonlyDictionary} from "dictionary-types";
+
+/** Union of all types that can be used as the key for property access.
+ *
+ * The type of `x` in the expression `o[x]` (for arbitrary `o`).
+ *
+ * As of TypeScript 4.9, equivalent to `string | number | symbol`. */
+export type Key = keyof never;
 
 /** Creates a new dictionary with the specified properties. */
 export function dictionary<T, K extends Key = string>(
