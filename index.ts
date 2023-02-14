@@ -37,13 +37,18 @@ export function copy<T extends object>(object: T): T {
     return Object.assign(copy, object);
 }
 
+/** The string property names of `T`. */
+export type StringKey<T extends object> = T extends Record<infer K, unknown>
+    ? K & string
+    : never;
+
+/** Returns an array of the object's own ennumerable string-keyed property names. */
 // @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.
-export function keys<T extends Key>(dictionary: Readonly<Record<T, unknown>>): string[];
+export function keys<T>(object: T): Array<StringKey<T>>;
 
 /* @internal This implementation is for internal use only, the exported declaration is above */
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
-export const keys: <T extends Key>(dictionary: Readonly<Record<T, unknown>>) => string[] =
-    Object.keys;
+export const keys: <T>(object: T) => Array<StringKey<T>> = Object.keys;
 
 // @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.
 export function values<TKey extends Key, TValue>(
