@@ -12,6 +12,12 @@ export function object<T extends object>(properties: T): NotFunction<T> {
     return Object.assign(Object.create(null), properties) as NotFunction<T>;
 }
 
+/** Creates a new empty object with a null prototype typed as a
+ * `Partial<T>`. */
+export function emptyObject<T extends object>(): Partial<NotFunction<T>> {
+    return Object.create(null) as Partial<NotFunction<T>>
+}
+
 /** Creates a shallow copy of the specified object.
  *
  * The new object will have the same prototype as the specified object.
