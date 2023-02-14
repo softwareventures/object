@@ -15,7 +15,14 @@ export function object<T extends object>(properties: T): NotFunction<T> {
 /** Creates a new empty object with a null prototype typed as a
  * `Partial<T>`. */
 export function emptyObject<T extends object>(): Partial<NotFunction<T>> {
-    return Object.create(null) as Partial<NotFunction<T>>
+    return Object.create(null) as Partial<NotFunction<T>>;
+}
+
+/** Creates a new record with the specified properties and a null prototype. */
+export function record<TKey extends Key, TValue>(
+    properties?: Record<TKey, TValue>
+): Record<TKey, TValue> {
+    return Object.assign(Object.create(null), properties) as Record<TKey, TValue>;
 }
 
 /** Creates a shallow copy of the specified object.
