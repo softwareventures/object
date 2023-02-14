@@ -64,16 +64,21 @@ export function values<T extends object>(object: T): Array<StringKeyedValue<T>>;
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
 export const values: <T extends object>(object: T) => Array<StringKeyedValue<T>> = Object.values;
 
+/** Key-value pairs of the string-keyed properties of `T`. */
+export type StringKeyedEntry<T extends object> = T extends Readonly<Record<infer K, unknown>>
+    ? K extends string
+        ? [K, T[K]]
+        : never
+    : never;
+
+/** Returns an array of the object's own ennumerable string-keyed property
+ * `[key, value]` pairs. */
 // @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.
-export function entries<TKey extends Key, TValue>(
-    dictionary: Readonly<Record<TKey, TValue>>
-): Array<[string, TValue]>;
+export function entries<T>(object: T): Array<StringKeyedEntry<T>>;
 
 /* @internal This implementation is for internal use only, the exported declaration is above. */
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
-export const entries: <TKey extends Key, TValue>(
-    dictionary: Readonly<Record<TKey, TValue>>
-) => Array<[string, TValue]> = Object.entries;
+export const entries: <T>(object: T) => Array<StringKeyedEntry<T>> = Object.entries;
 
 export function empty<T>(dictionary: Readonly<Record<Key, T>>): boolean {
     return keys(dictionary).length === 0;
