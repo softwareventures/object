@@ -16,7 +16,10 @@
   "license": "ISC",
   "scripts": {
     "fix": "tsc --noEmit && eslint . --fix && prettier --write .",
+    "postinstall": "husky install",
     "lint": "tsc --noEmit && eslint . && prettier --check .",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable",
     "prepare": "tsc",
     "semantic-release": "semantic-release",
     "test": "ava"
@@ -29,6 +32,9 @@
     "tslib": "2.5.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "17.4.3",
+    "@commitlint/config-conventional": "17.4.3",
+    "@commitlint/cz-commitlint": "17.4.2",
     "@softwareventures/eslint-config": "7.1.0",
     "@softwareventures/prettier-config": "4.0.0",
     "@softwareventures/semantic-release-config": "3.1.0",
@@ -36,13 +42,15 @@
     "@typescript-eslint/eslint-plugin": "5.51.0",
     "@typescript-eslint/parser": "5.51.0",
     "ava": "5.2.0",
-    "cz-conventional-changelog": "3.3.0",
+    "commitizen": "4.3.0",
     "eslint": "8.34.0",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-jsdoc": "39.9.1",
     "eslint-plugin-prefer-arrow": "1.2.3",
     "eslint-plugin-sonarjs": "0.18.0",
+    "husky": "8.0.3",
+    "pinst": "3.0.0",
     "prettier": "2.8.4",
     "semantic-release": "19.0.5",
     "ts-node": "10.9.1",
@@ -58,7 +66,7 @@
   "prettier": "@softwareventures/prettier-config",
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/@commitlint/cz-commitlint"
     }
   },
   "ava": {
