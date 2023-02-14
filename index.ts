@@ -38,9 +38,7 @@ export function copy<T extends object>(object: T): T {
 }
 
 /** The string property names of `T`. */
-export type StringKey<T extends object> = T extends Record<infer K, unknown>
-    ? K & string
-    : never;
+export type StringKey<T extends object> = T extends Record<infer K, unknown> ? K & string : never;
 
 /** Returns an array of the object's own ennumerable string-keyed property names. */
 // @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.
@@ -50,16 +48,21 @@ export function keys<T>(object: T): Array<StringKey<T>>;
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
 export const keys: <T>(object: T) => Array<StringKey<T>> = Object.keys;
 
+/** The string-keyed property values of `T`. */
+export type StringKeyedValue<T extends object> = T extends Record<infer K, unknown>
+    ? K extends string
+        ? T[K]
+        : never
+    : never;
+
+/** Returns an array of the object's own ennumerable string-keyed property
+ * values. */
 // @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.
-export function values<TKey extends Key, TValue>(
-    dictionary: Readonly<Record<TKey, TValue>>
-): TValue[];
+export function values<T extends object>(object: T): Array<StringKeyedValue<T>>;
 
 /* @internal This implementation is for internal use only, the exported declaration is above. */
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
-export const values: <TKey extends Key, TValue>(
-    dictionary: Readonly<Record<TKey, TValue>>
-) => TValue[] = Object.values;
+export const values: <T extends object>(object: T) => Array<StringKeyedValue<T>> = Object.values;
 
 // @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.
 export function entries<TKey extends Key, TValue>(
