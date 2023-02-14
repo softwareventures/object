@@ -103,20 +103,165 @@ export function empty<T>(record: Readonly<Record<string, T>>): boolean {
     return keys(record).length === 0;
 }
 
-export function merge<T>(...dictionaries: Array<Readonly<Record<string, T>>>): Record<string, T> {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const result: Record<string, T> = Object.create(null);
-    for (let i = 0; i < dictionaries.length; ++i) {
-        Object.assign(result, dictionaries[i]);
+export type Merge<A extends object, B extends object> = {
+    [K in keyof A | keyof B]: K extends keyof B ? B[K] : K extends keyof A ? A[K] : never;
+};
+
+/** Creates a new object that contains the properties of all the specified
+ * objects.
+ *
+ * If two or more of the specified objects have properties with the same key,
+ * then the newly created object will contain the property value from the last
+ * such specified object. */
+export function mergeObjects<A extends object>(a: A): NotFunction<A>;
+
+/** Creates a new object that contains the properties of all the specified
+ * objects.
+ *
+ * If two or more of the specified objects have properties with the same key,
+ * then the newly created object will contain the property value from the last
+ * such specified object. */
+export function mergeObjects<A extends object, B extends object>(a: A, b: B): Merge<A, B>;
+
+/** Creates a new object that contains the properties of all the specified
+ * objects.
+ *
+ * If two or more of the specified objects have properties with the same key,
+ * then the newly created object will contain the property value from the last
+ * such specified object. */
+export function mergeObjects<A extends object, B extends object, C extends object>(
+    a: A,
+    b: B,
+    c: C
+): Merge<Merge<A, B>, C>;
+
+/** Creates a new object that contains the properties of all the specified
+ * objects.
+ *
+ * If two or more of the specified objects have properties with the same key,
+ * then the newly created object will contain the property value from the last
+ * such specified object. */
+export function mergeObjects<
+    A extends object,
+    B extends object,
+    C extends object,
+    D extends object
+>(a: A, b: B, c: C, d: D): Merge<Merge<Merge<A, B>, C>, D>;
+
+/** Creates a new object that contains the properties of all the specified
+ * objects.
+ *
+ * If two or more of the specified objects have properties with the same key,
+ * then the newly created object will contain the property value from the last
+ * such specified object. */
+export function mergeObjects<
+    A extends object,
+    B extends object,
+    C extends object,
+    D extends object,
+    E extends object
+>(a: A, b: B, c: C, d: D, e: E): Merge<Merge<Merge<Merge<A, B>, C>, D>, E>;
+
+/** Creates a new object that contains the properties of all the specified
+ * objects.
+ *
+ * If two or more of the specified objects have properties with the same key,
+ * then the newly created object will contain the property value from the last
+ * such specified object. */
+export function mergeObjects<K extends Key, T>(
+    ...records: Array<Readonly<Record<K, T>>>
+): Record<K, T>;
+
+export function mergeObjects<K extends Key, T>(
+    ...records: Array<Readonly<Record<K, T>>>
+): Record<K, T> {
+    const result = record<K, T>();
+    for (let i = 0; i < records.length; ++i) {
+        Object.assign(result, records[i]);
     }
     return result;
 }
 
-export function mergeFn<T>(
-    ...dictionaries: Array<Readonly<Record<string, T>>>
-): (...dictionaries: Array<Readonly<Record<string, T>>>) => Record<string, T> {
-    const a = merge(...dictionaries);
-    return (...b) => merge(a, ...b);
+/** Curried variant of {@link mergeObjects}.
+ *
+ * Returns a function that creates an object that contains the properties of
+ * all the specified objects.
+ *
+ * If two or more of the specified objects have properties with the same key,
+ * then the newly created object will contain the property value from the last
+ * such specified object. */
+export function mergeObjectsFn<A extends object>(): (a: A) => NotFunction<A>;
+
+/** Curried variant of {@link mergeObjects}.
+ *
+ * Returns a function that creates an object that contains the properties of
+ * all the specified objects.
+ *
+ * If two or more of the specified objects have properties with the same key,
+ * then the newly created object will contain the property value from the last
+ * such specified object. */
+export function mergeObjectsFn<A extends object, B extends object>(b: B): (a: A) => Merge<A, B>;
+
+/** Curried variant of {@link mergeObjects}.
+ *
+ * Returns a function that creates an object that contains the properties of
+ * all the specified objects.
+ *
+ * If two or more of the specified objects have properties with the same key,
+ * then the newly created object will contain the property value from the last
+ * such specified object. */
+export function mergeObjectsFn<A extends object, B extends object, C extends object>(
+    b: B,
+    c: C
+): (a: A) => Merge<Merge<A, B>, C>;
+
+/** Curried variant of {@link mergeObjects}.
+ *
+ * Returns a function that creates an object that contains the properties of
+ * all the specified objects.
+ *
+ * If two or more of the specified objects have properties with the same key,
+ * then the newly created object will contain the property value from the last
+ * such specified object. */
+export function mergeObjectsFn<
+    A extends object,
+    B extends object,
+    C extends object,
+    D extends object
+>(b: B, c: C, d: D): (a: A) => Merge<Merge<Merge<A, B>, C>, D>;
+
+/** Curried variant of {@link mergeObjects}.
+ *
+ * Returns a function that creates an object that contains the properties of
+ * all the specified objects.
+ *
+ * If two or more of the specified objects have properties with the same key,
+ * then the newly created object will contain the property value from the last
+ * such specified object. */
+export function mergeObjectsFn<
+    A extends object,
+    B extends object,
+    C extends object,
+    D extends object,
+    E extends object
+>(b: B, c: C, d: D, e: E): (a: A) => Merge<Merge<Merge<Merge<A, B>, C>, D>, E>;
+
+/** Curried variant of {@link mergeObjects}.
+ *
+ * Returns a function that creates an object that contains the properties of
+ * all the specified objects.
+ *
+ * If two or more of the specified objects have properties with the same key,
+ * then the newly created object will contain the property value from the last
+ * such specified object. */
+export function mergeObjectsFn<K extends Key, T>(
+    ...records: Array<Readonly<Record<K, T>>>
+): (record: Readonly<Record<K, T>>) => Record<K, T>;
+
+export function mergeObjectsFn<K extends Key, T>(
+    ...records: Array<Readonly<Record<K, T>>>
+): (record: Readonly<Record<K, T>>) => Record<K, T> {
+    return record => mergeObjects(record, ...records);
 }
 
 export function map<T, U>(
