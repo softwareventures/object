@@ -1,5 +1,24 @@
 import test from "ava";
-import {entries, filter, keys, map, values} from "./index";
+import {entries, filter, keys, map, object, values} from "./index";
+
+const s = Symbol();
+
+class A {
+    public readonly a = 1;
+    public readonly b = 2;
+    public readonly [s] = 3;
+}
+
+test("object", t => {
+    const o = object(new A());
+    t.is(Object.getPrototypeOf(o), null);
+    t.false(o instanceof A);
+    t.deepEqual(o, {a: 1, b: 2, [s]: 3});
+
+    const f = (): number => 1;
+    const o2 = object(f);
+    t.is(typeof o2, "object");
+});
 
 test("map", t => {
     t.deepEqual(

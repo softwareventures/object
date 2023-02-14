@@ -5,12 +5,11 @@
  * As of TypeScript 4.9, equivalent to `string | number | symbol`. */
 export type Key = keyof never;
 
-/** Creates a new dictionary with the specified properties. */
-export function dictionary<T, K extends Key = string>(
-    properties?: Readonly<Record<K, T>>
-): Record<K, T> {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    return copy(properties ?? ({} as Readonly<Record<K, T>>));
+export type NotFunction<T> = {[K in keyof T]: T[K]};
+
+/** Creates a new object with the specified properties and a null prototype. */
+export function object<T extends object>(properties: T): NotFunction<T> {
+    return Object.assign(Object.create(null), properties) as NotFunction<T>;
 }
 
 /** Creates a shallow copy of the specified dictionary. */
