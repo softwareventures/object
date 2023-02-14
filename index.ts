@@ -12,12 +12,29 @@ export function object<T extends object>(properties: T): NotFunction<T> {
     return Object.assign(Object.create(null), properties) as NotFunction<T>;
 }
 
-/** Creates a shallow copy of the specified dictionary. */
-export function copy<T, K extends Key, L extends K = K>(
-    dictionary: Readonly<Record<K, T>>
-): Record<K, T> {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return Object.assign(Object.create(null), dictionary);
+/** Creates a shallow copy of the specified object.
+ *
+ * The new object will have the same prototype as the specified object.
+ *
+ * If the object is callable (is a `Function`), then the new object will also
+ * be callable and will call the same function.
+ *
+ * If the object is newable (is a class), then the new object will also be
+ * newable and will construct a subclass with no overrides.
+ *
+ * To create a copy that has a null prototype and that is not callable or
+ * newable, use {@link object} instead. */
+export function copy<T extends object>(object: T): T {
+    let copy: object;
+    if (typeof object === "function") {
+        copy = function (this: unknown, ...args: unknown[]): unknown {
+            return (object as (...args: unknown[]) => unknown).apply(this, args);
+        };
+        Object.setPrototypeOf(copy, Object.getPrototypeOf(object) as object | null);
+    } else {
+        copy = Object.create(Object.getPrototypeOf(object) as object | null) as object;
+    }
+    return Object.assign(copy, object);
 }
 
 // @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.

@@ -1,5 +1,5 @@
 import test from "ava";
-import {entries, filter, keys, map, object, values} from "./index";
+import {copy, entries, filter, keys, map, object, values} from "./index";
 
 const s = Symbol();
 
@@ -18,6 +18,22 @@ test("object", t => {
     const f = (): number => 1;
     const o2 = object(f);
     t.is(typeof o2, "object");
+});
+
+test("copy", t => {
+    const f = (): number => 1;
+    f.a = 1;
+    f.b = 2;
+    const o = copy(f);
+    t.is(o.a, 1);
+    t.is(o.b, 2);
+    t.is(o(), 1);
+
+    const o2 = copy(new A());
+    t.true(o2 instanceof A);
+    t.is(o2.a, 1);
+    t.is(o2.b, 2);
+    t.is(o2[s], 3);
 });
 
 test("map", t => {
