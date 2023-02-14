@@ -1,7 +1,7 @@
 {
-  "name": "@softwareventures/dictionary",
+  "name": "@softwareventures/object",
   "version": "0.0.0-development",
-  "description": "Pure functional dictionary manipulation and traversal",
+  "description": "Pure functional object manipulation and traversal",
   "keywords": [
     "dictionary",
     "functional",
@@ -10,9 +10,9 @@
     "typescript"
   ],
   "author": "Daniel Cassidy <mail@danielcassidy.me.uk>",
-  "homepage": "https://github.com/softwareventures/dictionary",
-  "bugs": "https://github.com/softwareventures/dictionary",
-  "repository": "github:softwareventures/dictionary",
+  "homepage": "https://github.com/softwareventures/object",
+  "bugs": "https://github.com/softwareventures/object",
+  "repository": "github:softwareventures/object",
   "license": "ISC",
   "scripts": {
     "fix": "tsc --noEmit && eslint . --fix && prettier --write .",
