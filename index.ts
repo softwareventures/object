@@ -93,8 +93,14 @@ export function entries<T>(object: T): Array<StringKeyedEntry<T>>;
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
 export const entries: <T>(object: T) => Array<StringKeyedEntry<T>> = Object.entries;
 
-export function empty<T>(dictionary: Readonly<Record<Key, T>>): boolean {
-    return keys(dictionary).length === 0;
+/** Tests if the specified record is empty of own ennumerable string-keyed
+ * properties.
+ *
+ * Properties keyed by symbols, inherited properties, and non-ennumerable
+ * properties are not considered, so an "empty" record may in fact have
+ * properties of those types. */
+export function empty<T>(record: Readonly<Record<string, T>>): boolean {
+    return keys(record).length === 0;
 }
 
 export function merge<T>(...dictionaries: Array<Readonly<Record<string, T>>>): Record<string, T> {
