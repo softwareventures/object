@@ -340,6 +340,41 @@ export function mapObjectFn<TValue, TNewKey extends Key, TNewValue>(
     return object => mapObject(object, f);
 }
 
+/** Creates a new object with string-keyed properties of the specified object
+ * mapped to new keys according to the specified mapping function.
+ *
+ * Only the string-keyed properties of the input object are considered, but the
+ * mapping function may produce keys of any suitable type.
+ *
+ * If the mapping function returns the same key twice, then later values will
+ * overwrite earlier ones. */
+export function mapObjectKeys<TValue, TNewKey extends Key = string>(
+    object: Readonly<Record<string, TValue>>,
+    f: (key: string) => TNewKey
+): Record<TNewKey, TValue> {
+    return Object.assign(
+        Object.create(null),
+        Object.fromEntries(mapIterable(Object.entries(object), ([key, value]) => [f(key), value]))
+    ) as Record<TNewKey, TValue>;
+}
+
+/** Curried variant of {@link mapObjectKeys}.
+ *
+ * Returns a function that creates a new object with string-keyed properties of
+ * the specified object mapped to new keys according to the specified mapping
+ * function.
+ *
+ * Only the string-keyed properties of the input object are considered, but the
+ * mapping function may produce keys of any suitable type.
+ *
+ * If the mapping function returns the same key twice, then later values will
+ * overwrite earlier ones. */
+export function mapObjectKeysFn<TValue, TNewKey extends Key = string>(
+    f: (key: string) => TNewKey
+): (object: Readonly<Record<string, TValue>>) => Record<TNewKey, TValue> {
+    return object => mapObjectKeys(object, f);
+}
+
 export function map<T, U>(
     dictionary: Readonly<Record<string, T>>,
     f: (value: T, key: string) => U

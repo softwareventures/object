@@ -1,6 +1,17 @@
 import {notNull} from "@softwareventures/nullable";
 import test from "ava";
-import {copy, entries, filter, keys, map, mapObject, mergeObjects, object, values} from "./index";
+import {
+    copy,
+    entries,
+    filter,
+    keys,
+    map,
+    mapObject,
+    mapObjectKeys,
+    mergeObjects,
+    object,
+    values
+} from "./index";
 
 const s = Symbol();
 
@@ -69,6 +80,21 @@ test("mapObject", t => {
         {
             [sa]: 2,
             [sb]: 3
+        }
+    );
+});
+
+test("mapObjectKeys", t => {
+    const a = {
+        a: 1,
+        b: 2
+    } as const;
+
+    t.deepEqual(
+        mapObjectKeys(a, key => `a${key}`),
+        {
+            aa: 1,
+            ab: 2
         }
     );
 });
