@@ -1,5 +1,6 @@
+import {notNull} from "@softwareventures/nullable";
 import test from "ava";
-import {copy, entries, filter, keys, map, mergeObjects, object, values} from "./index";
+import {copy, entries, filter, keys, map, mapObject, mergeObjects, object, values} from "./index";
 
 const s = Symbol();
 
@@ -47,6 +48,29 @@ test("mergeObjects", t => {
     t.deepEqual(mergeObjects(a, b), {a: "hello", b: 2, c: 3, [s]: false});
     t.deepEqual(mergeObjects(a, b, c), {a: true, b: 2, c: 3, d: 4, [s]: false});
     t.deepEqual(mergeObjects(a, b, c, d), {a: true, b: 2, c: true, d: 5, [s]: false});
+});
+
+test("mapObject", t => {
+    const a = {
+        a: 1,
+        b: 2
+    } as const;
+
+    const sa = Symbol();
+    const sb = Symbol();
+
+    const symbols: Record<string, symbol> = {
+        a: sa,
+        b: sb
+    };
+
+    t.deepEqual(
+        mapObject(a, (key, value) => [notNull(symbols[key]), value + 1]),
+        {
+            [sa]: 2,
+            [sb]: 3
+        }
+    );
 });
 
 test("map", t => {

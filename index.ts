@@ -1,3 +1,5 @@
+import {map as mapIterable} from "@softwareventures/iterable";
+
 /** Union of all types that can be used as the key for property access.
  *
  * The type of `x` in the expression `o[x]` (for arbitrary `o`).
@@ -262,6 +264,80 @@ export function mergeObjectsFn<K extends Key, T>(
     ...records: Array<Readonly<Record<K, T>>>
 ): (record: Readonly<Record<K, T>>) => Record<K, T> {
     return record => mergeObjects(record, ...records);
+}
+
+/** Creates a new object with properties mapped from the string-keyed
+ * properties of the specified object according to the specified mapping
+ * function.
+ *
+ * Only the string-keyed properties of the input object are considered, but
+ * the mapping function may produce keys of any suitable type.
+ *
+ * If the mapping function returns the same key twice, then later values will
+ * overwrite earlier ones. */
+export function mapObject<T, U>(
+    object: Readonly<Record<string, T>>,
+    f: (key: string, value: T) => readonly [string, U]
+): Record<string, U>;
+
+/** Creates a new object with properties mapped from the string-keyed
+ * properties of the specified object according to the specified mapping
+ * function.
+ *
+ * Only the string-keyed properties of the input object are considered, but
+ * the mapping function may produce keys of any suitable type.
+ *
+ * If the mapping function returns the same key twice, then later values will
+ * overwrite earlier ones. */
+export function mapObject<TValue, TNewKey extends Key, TNewValue>(
+    object: Readonly<Record<string, TValue>>,
+    f: (key: string, value: TValue) => readonly [TNewKey, TNewValue]
+): Record<TNewKey, TNewValue>;
+
+export function mapObject<TValue, TNewKey extends Key, TNewValue>(
+    object: Readonly<Record<string, TValue>>,
+    f: (key: string, value: TValue) => readonly [TNewKey, TNewValue]
+): Record<TNewKey, TNewValue> {
+    return Object.assign(
+        Object.create(null),
+        Object.fromEntries(mapIterable(Object.entries(object), ([key, value]) => f(key, value)))
+    ) as Record<TNewKey, TNewValue>;
+}
+
+/** Curried variant of {@link mapObject}.
+ *
+ * Returns a function that creates a new object with properties mapped from the
+ * string-keyed properties of the specified object according to the specified
+ * mapping function.
+ *
+ * Only the string-keyed properties of the input object are considered, but
+ * the mapping function may produce keys of any suitable type.
+ *
+ * If the mapping function returns the same key twice, then later values will
+ * overwrite earlier ones. */
+export function mapObjectFn<T, U>(
+    f: (key: string, value: T) => readonly [string, U]
+): (object: Readonly<Record<string, T>>) => Record<string, U>;
+
+/** Curried variant of {@link mapObject}.
+ *
+ * Returns a function that creates a new object with properties mapped from the
+ * string-keyed properties of the specified object according to the specified
+ * mapping function.
+ *
+ * Only the string-keyed properties of the input object are considered, but
+ * the mapping function may produce keys of any suitable type.
+ *
+ * If the mapping function returns the same key twice, then later values will
+ * overwrite earlier ones. */
+export function mapObjectFn<TValue, TNewKey extends Key, TNewValue>(
+    f: (key: string, value: TValue) => readonly [TNewKey, TNewValue]
+): (object: Readonly<Record<string, TValue>>) => Record<TNewKey, TNewValue>;
+
+export function mapObjectFn<TValue, TNewKey extends Key, TNewValue>(
+    f: (key: string, value: TValue) => readonly [TNewKey, TNewValue]
+): (object: Readonly<Record<string, TValue>>) => Record<TNewKey, TNewValue> {
+    return object => mapObject(object, f);
 }
 
 export function map<T, U>(
