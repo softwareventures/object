@@ -375,21 +375,58 @@ export function mapObjectKeysFn<TValue, TNewKey extends Key = string>(
     return object => mapObjectKeys(object, f);
 }
 
-export function map<T, U>(
-    dictionary: Readonly<Record<string, T>>,
+export type MapObjectValues<TObject extends object, TNewValue> = {
+    [TKey in string & keyof TObject]: TNewValue;
+};
+
+/** Creates a new object with string-keyed properties of the specified object
+ * mapped to new values according to the specified mapping function. */
+export function mapObjectValues<TObject extends object, TNewValue>(
+    object: TObject,
+    f: (value: TObject[keyof TObject], key: keyof TObject) => TNewValue
+): MapObjectValues<TObject, TNewValue>;
+
+/** Creates a new object with string-keyed properties of the specified object
+ * mapped to new values according to the specified mapping function. */
+export function mapObjectValues<T, U>(
+    object: Readonly<Record<string, T>>,
+    f: (value: T, key: string) => U
+): Record<string, U>;
+
+export function mapObjectValues<T, U>(
+    object: Readonly<Record<string, T>>,
     f: (value: T, key: string) => U
 ): Record<string, U> {
-    const result = Object.create(null) as Record<string, U>;
-    for (const [key, value] of entries(dictionary)) {
-        result[key] = f(value, key);
-    }
-    return result;
+    return Object.assign(
+        Object.create(null),
+        Object.fromEntries(
+            mapIterable(Object.entries(object), ([key, value]) => [key, f(value, key)])
+        )
+    ) as Record<string, U>;
 }
 
-export function mapFn<T, U>(
+/** Curried variant of {@link mapObjectValues}.
+ *
+ * Returns a function that creates a new object with string-keyed properties
+ * of the specified object mapped to new values according to the specified
+ * mapping function. */
+export function mapObjectValuesFn<TObject extends object, TNewValue>(
+    f: (value: TObject[keyof TObject], key: keyof TObject) => TNewValue
+): (object: TObject) => MapObjectValues<TObject, TNewValue>;
+
+/** Curried variant of {@link mapObjectValues}.
+ *
+ * Returns a function that creates a new object with string-keyed properties
+ * of the specified object mapped to new values according to the specified
+ * mapping function. */
+export function mapObjectValuesFn<T, U>(
     f: (value: T, key: string) => U
-): (dictionary: Readonly<Record<string, T>>) => Record<string, U> {
-    return dictionary => map(dictionary, f);
+): (object: Readonly<Record<string, T>>) => Record<string, U>;
+
+export function mapObjectValuesFn<T, U>(
+    f: (value: T, key: string) => U
+): (object: Readonly<Record<string, T>>) => Record<string, U> {
+    return object => mapObjectValues(object, f);
 }
 
 export function filter<T, U extends T>(

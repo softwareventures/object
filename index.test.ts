@@ -5,9 +5,9 @@ import {
     entries,
     filter,
     keys,
-    map,
     mapObject,
     mapObjectKeys,
+    mapObjectValues,
     mergeObjects,
     object,
     values
@@ -99,13 +99,13 @@ test("mapObjectKeys", t => {
     );
 });
 
-test("map", t => {
+test("mapObjectValues", t => {
     t.deepEqual(
-        map({a: 1, b: 2}, value => value + 1),
+        mapObjectValues({a: 1, b: 2}, value => value + 1),
         {a: 2, b: 3}
     );
     t.deepEqual(
-        map({a: 1, b: 2}, (value, key) => (value * 2).toString(10) + key),
+        mapObjectValues({a: 1, b: 2}, (value, key) => (value * 2).toString(10) + key),
         {a: "2a", b: "4b"}
     );
 });
