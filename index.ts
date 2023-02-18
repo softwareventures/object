@@ -1,4 +1,4 @@
-import {map as mapIterable} from "@softwareventures/iterable";
+import {map} from "@softwareventures/iterable";
 
 /** Union of all types that can be used as the key for property access.
  *
@@ -300,7 +300,7 @@ export function mapObject<TValue, TNewKey extends Key, TNewValue>(
 ): Record<TNewKey, TNewValue> {
     return Object.assign(
         Object.create(null),
-        Object.fromEntries(mapIterable(Object.entries(object), ([key, value]) => f(key, value)))
+        Object.fromEntries(map(Object.entries(object), ([key, value]) => f(key, value)))
     ) as Record<TNewKey, TNewValue>;
 }
 
@@ -354,7 +354,7 @@ export function mapObjectKeys<TValue, TNewKey extends Key = string>(
 ): Record<TNewKey, TValue> {
     return Object.assign(
         Object.create(null),
-        Object.fromEntries(mapIterable(Object.entries(object), ([key, value]) => [f(key), value]))
+        Object.fromEntries(map(Object.entries(object), ([key, value]) => [f(key), value]))
     ) as Record<TNewKey, TValue>;
 }
 
@@ -399,9 +399,7 @@ export function mapObjectValues<T, U>(
 ): Record<string, U> {
     return Object.assign(
         Object.create(null),
-        Object.fromEntries(
-            mapIterable(Object.entries(object), ([key, value]) => [key, f(value, key)])
-        )
+        Object.fromEntries(map(Object.entries(object), ([key, value]) => [key, f(value, key)]))
     ) as Record<string, U>;
 }
 
