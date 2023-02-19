@@ -300,7 +300,7 @@ export function mapObject<TValue, TNewKey extends Key, TNewValue>(
 ): Record<TNewKey, TNewValue> {
     return Object.assign(
         Object.create(null),
-        Object.fromEntries(map(Object.entries(object), ([key, value]) => f(key, value)))
+        Object.fromEntries(map(entries(object), ([key, value]) => f(key, value)))
     ) as Record<TNewKey, TNewValue>;
 }
 
@@ -354,7 +354,7 @@ export function mapObjectKeys<TValue, TNewKey extends Key = string>(
 ): Record<TNewKey, TValue> {
     return Object.assign(
         Object.create(null),
-        Object.fromEntries(map(Object.entries(object), ([key, value]) => [f(key), value]))
+        Object.fromEntries(map(entries(object), ([key, value]) => [f(key), value]))
     ) as Record<TNewKey, TValue>;
 }
 
@@ -399,7 +399,7 @@ export function mapObjectValues<T, U>(
 ): Record<string, U> {
     return Object.assign(
         Object.create(null),
-        Object.fromEntries(map(Object.entries(object), ([key, value]) => [key, f(value, key)]))
+        Object.fromEntries(map(entries(object), ([key, value]) => [key, f(value, key)]))
     ) as Record<string, U>;
 }
 
@@ -440,7 +440,7 @@ export function filterObject<T extends object>(
     return Object.assign(
         Object.create(null),
         Object.fromEntries(
-            filter(Object.entries(object), ([key, value]) =>
+            filter(entries(object), ([key, value]) =>
                 predicate(key as string & keyof T, value as T[string & keyof T])
             )
         )
@@ -481,9 +481,7 @@ export function filterObjectKeys<T extends object>(
 ): Partial<StringKeyedProperties<T>> {
     return Object.assign(
         Object.create(null),
-        Object.fromEntries(
-            filter(Object.entries(object), ([key]) => predicate(key as string & keyof T))
-        )
+        Object.fromEntries(filter(entries(object), ([key]) => predicate(key as string & keyof T)))
     ) as Partial<StringKeyedProperties<T>>;
 }
 
@@ -536,7 +534,7 @@ export function filterObjectValues<T extends object>(
     return Object.assign(
         Object.create(null),
         Object.fromEntries(
-            filter(Object.entries(object), ([_, value]) => predicate(value as T[string & keyof T]))
+            filter(entries(object), ([_, value]) => predicate(value as T[string & keyof T]))
         )
     ) as Partial<StringKeyedProperties<T>>;
 }
