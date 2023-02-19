@@ -1,4 +1,4 @@
-import {filter as filterIterable, map} from "@softwareventures/iterable";
+import {filter, map} from "@softwareventures/iterable";
 
 /** Union of all types that can be used as the key for property access.
  *
@@ -440,7 +440,7 @@ export function filterObject<T extends object>(
     return Object.assign(
         Object.create(null),
         Object.fromEntries(
-            filterIterable(Object.entries(object), ([key, value]) =>
+            filter(Object.entries(object), ([key, value]) =>
                 predicate(key as string & keyof T, value as T[string & keyof T])
             )
         )
@@ -482,7 +482,7 @@ export function filterObjectKeys<T extends object>(
     return Object.assign(
         Object.create(null),
         Object.fromEntries(
-            filterIterable(Object.entries(object), ([key]) => predicate(key as string & keyof T))
+            filter(Object.entries(object), ([key]) => predicate(key as string & keyof T))
         )
     ) as Partial<StringKeyedProperties<T>>;
 }
@@ -536,9 +536,7 @@ export function filterObjectValues<T extends object>(
     return Object.assign(
         Object.create(null),
         Object.fromEntries(
-            filterIterable(Object.entries(object), ([_, value]) =>
-                predicate(value as T[string & keyof T])
-            )
+            filter(Object.entries(object), ([_, value]) => predicate(value as T[string & keyof T]))
         )
     ) as Partial<StringKeyedProperties<T>>;
 }
