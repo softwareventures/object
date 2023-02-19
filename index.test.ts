@@ -3,9 +3,9 @@ import test from "ava";
 import {
     copy,
     entries,
-    filter,
     filterObject,
     filterObjectKeys,
+    filterObjectValues,
     keys,
     mapObject,
     mapObjectKeys,
@@ -149,15 +149,18 @@ test("filterObjectKeys", t => {
     );
 });
 
-test("filter", t => {
-    const dictionary = {a: 1, b: 2, c: 3, d: 17, e: 24};
+test("filterObjectValues", t => {
+    const object = {
+        a: 1,
+        b: 2,
+        c: 3,
+        d: 17,
+        e: 24
+    } as const;
+
     t.deepEqual(
-        filter(dictionary, value => value % 2 === 0),
+        filterObjectValues(object, value => value % 2 === 0),
         {b: 2, e: 24}
-    );
-    t.deepEqual(
-        filter(dictionary, (value: number, key: string) => value % 2 === 1 && key !== "c"),
-        {a: 1, d: 17}
     );
 });
 

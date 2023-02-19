@@ -513,43 +513,62 @@ export function filterObjectKeysFn<T extends object>(
     return object => filterObjectKeys(object, predicate);
 }
 
-export function filter<T, U extends T>(
-    dictionary: Readonly<Record<string, T>>,
-    predicate: (value: T) => value is U
-): Record<string, U>;
-export function filter<T>(
-    dictionary: Readonly<Record<string, T>>,
-    predicate: (value: T, key: string) => boolean
-): Record<string, T>;
-export function filter<T>(
-    dictionary: Readonly<Record<string, T>>,
-    predicate: (value: T, key: string) => boolean
-): Record<string, T> {
-    const result = Object.create(null) as Record<string, T>;
-    for (const [key, value] of entries(dictionary)) {
-        if (predicate(value, key)) {
-            result[key] = value;
-        }
-    }
-    return result;
+export type FilterObjectValues<T, U extends T[string & keyof T]> = {
+    [K in string & keyof T]: T[K] extends U ? T[K] : never;
+};
+
+export function filterObjectValues<T extends object, U extends T[string & keyof T]>(
+    object: Readonly<T>,
+    predicate: (value: T[string & keyof T]) => value is U
+): FilterObjectValues<T, U>;
+
+/** Creates a new object that contains the string-keyed properties of the
+ * specified object, filtered by the specified predicate. */
+export function filterObjectValues<T extends object>(
+    object: Readonly<T>,
+    predicate: (value: T[string & keyof T]) => boolean
+): Partial<StringKeyedProperties<T>>;
+
+export function filterObjectValues<T extends object>(
+    object: Readonly<T>,
+    predicate: (value: T[string & keyof T]) => boolean
+): Partial<StringKeyedProperties<T>> {
+    return Object.assign(
+        Object.create(null),
+        Object.fromEntries(
+            filterIterable(Object.entries(object), ([_, value]) =>
+                predicate(value as T[string & keyof T])
+            )
+        )
+    ) as Partial<StringKeyedProperties<T>>;
 }
 
-export function filterFn<T, U extends T>(
-    predicate: (value: T) => value is U
-): (dictionary: Readonly<Record<string, T>>) => Record<string, U>;
-export function filterFn<T>(
-    predicate: (value: T, key: string) => boolean
-): (dictionary: Readonly<Record<string, T>>) => Record<string, T>;
-export function filterFn<T>(
-    predicate: (value: T, key: string) => boolean
-): (dictionary: Readonly<Record<string, T>>) => Record<string, T> {
-    return dictionary => filter(dictionary, predicate);
+/** Curried variant of {@link filterObjectValues}.
+ *
+ * Returns a function that creates a new object that contains the string-keyed
+ * properties of the specified object, filtered by the specified predicate. */
+export function filterObjectValuesFn<T extends object, U extends T[string & keyof T]>(
+    predicate: (value: T[string & keyof T]) => value is U
+): (object: Readonly<T>) => FilterObjectValues<T, U>;
+
+/** Curried variant of {@link filterObjectValues}.
+ *
+ * Returns a function that creates a new object that contains the string-keyed
+ * properties of the specified object, filtered by the specified predicate. */
+export function filterObjectValuesFn<T extends object>(
+    predicate: (value: T[string & keyof T]) => boolean
+): (object: Readonly<T>) => Partial<StringKeyedProperties<T>>;
+
+export function filterObjectValuesFn<T extends object>(
+    predicate: (value: T[string & keyof T]) => boolean
+): (object: Readonly<T>) => Partial<StringKeyedProperties<T>> {
+    return object => filterObjectValues(object, predicate);
 }
 
 export function excludeNull<T>(
     dictionary: Readonly<Record<string, T | undefined | null>>
 ): Record<string, T> {
-    return filter(dictionary, notNull);
+    return filterObjectValues(dictionary, notNull);
 }
 
 function notNull<T>(value: T | undefined | null): value is T {
