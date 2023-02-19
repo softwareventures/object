@@ -457,6 +457,62 @@ export function filterObjectFn<T extends object>(
     return object => filterObject(object, predicate);
 }
 
+export type FilterObjectKeys<T extends object, U extends string & keyof T> = {
+    [K in U]: T[K];
+};
+
+/** Creates a new object that contains the string-keyed properties of the
+ * specified object, filtered by the specified predicate. */
+export function filterObjectKeys<T extends object, U extends string & keyof T>(
+    object: Readonly<T>,
+    predicate: (key: string & keyof T) => key is U
+): FilterObjectKeys<T, U>;
+
+/** Creates a new object that contains the string-keyed properties of the
+ * specified object, filtered by the specified predicate. */
+export function filterObjectKeys<T extends object>(
+    object: Readonly<T>,
+    predicate: (key: string & keyof T) => boolean
+): Partial<StringKeyedProperties<T>>;
+
+export function filterObjectKeys<T extends object>(
+    object: Readonly<T>,
+    predicate: (key: string & keyof T) => boolean
+): Partial<StringKeyedProperties<T>> {
+    return Object.assign(
+        Object.create(null),
+        Object.fromEntries(
+            filterIterable(Object.entries(object), ([key]) => predicate(key as string & keyof T))
+        )
+    ) as Partial<StringKeyedProperties<T>>;
+}
+
+/** Curried variant of {@link filterObjectKeys}.
+ *
+ * Returns a function that creates a new object that contains the string-keyed
+ * properties of the specified object, filtered by the specified predicate. */
+export function filterObjectKeysFn<T extends object, U extends string & keyof T>(
+    predicate: (key: string & keyof T) => key is U
+): (object: Readonly<T>) => FilterObjectKeys<T, U>;
+
+/** Curried variant of {@link filterObjectKeys}.
+ *
+ * Returns a function that creates a new object that contains the string-keyed
+ * properties of the specified object, filtered by the specified predicate. */
+export function filterObjectKeysFn<T extends object>(
+    predicate: (key: string & keyof T) => boolean
+): (object: Readonly<T>) => Partial<StringKeyedProperties<T>>;
+
+/** Curried variant of {@link filterObjectKeys}.
+ *
+ * Returns a function that creates a new object that contains the string-keyed
+ * properties of the specified object, filtered by the specified predicate. */
+export function filterObjectKeysFn<T extends object>(
+    predicate: (key: string & keyof T) => boolean
+): (object: Readonly<T>) => Partial<StringKeyedProperties<T>> {
+    return object => filterObjectKeys(object, predicate);
+}
+
 export function filter<T, U extends T>(
     dictionary: Readonly<Record<string, T>>,
     predicate: (value: T) => value is U
