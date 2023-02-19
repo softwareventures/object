@@ -3,7 +3,7 @@ import test from "ava";
 import {
     copy,
     entries,
-    filter,
+    filter, filterObject,
     keys,
     mapObject,
     mapObjectKeys,
@@ -109,6 +109,22 @@ test("mapObjectValues", t => {
         {a: "2a", b: "4b"}
     );
 });
+
+test("filterObject", t => {
+    const object = {
+        a: 1,
+        b: 2,
+        c: 3,
+        d: 4,
+        e: 5
+    } as const;
+
+    t.deepEqual(filterObject(object, (key, value) => value % 2 === 0 || key === "c"), {
+        b: 2,
+        c: 3,
+        d: 4
+    });
+})
 
 test("filter", t => {
     const dictionary = {a: 1, b: 2, c: 3, d: 17, e: 24};

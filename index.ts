@@ -1,4 +1,4 @@
-import {map} from "@softwareventures/iterable";
+import {filter as filterIterable, map} from "@softwareventures/iterable";
 
 /** Union of all types that can be used as the key for property access.
  *
@@ -425,6 +425,36 @@ export function mapObjectValuesFn<T, U>(
     f: (value: T, key: string) => U
 ): (object: Readonly<Record<string, T>>) => Record<string, U> {
     return object => mapObjectValues(object, f);
+}
+
+export type StringKeyedProperties<T> = {
+    [K in string & keyof T]: T[K];
+};
+
+/** Creates a new object that contains the string-keyed properties of the
+ * specified object, filtered by the specified predicate. */
+export function filterObject<T extends object>(
+    object: Readonly<T>,
+    predicate: (key: string & keyof T, value: T[string & keyof T]) => boolean
+): Partial<StringKeyedProperties<T>> {
+    return Object.assign(
+        Object.create(null),
+        Object.fromEntries(
+            filterIterable(Object.entries(object), ([key, value]) =>
+                predicate(key as string & keyof T, value as T[string & keyof T])
+            )
+        )
+    ) as Partial<StringKeyedProperties<T>>;
+}
+
+/** Curried variant of {@link filterObject}.
+ *
+ * Returns a function that creates a new object that contains the string-keyed
+ * properties of the specified object, filtered by the specified predicate. */
+export function filterObjectFn<T extends object>(
+    predicate: (key: string & keyof T, value: T[string & keyof T]) => boolean
+): (object: Readonly<T>) => Partial<StringKeyedProperties<T>> {
+    return object => filterObject(object, predicate);
 }
 
 export function filter<T, U extends T>(
