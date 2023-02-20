@@ -52,6 +52,16 @@ export function copy<T extends object>(object: T): T {
     return Object.assign(copy, object);
 }
 
+/** Transforms a list of key-value pairs into an object.
+ *
+ * If the same key is specified twice or more, then later values overwrite
+ * earlier values. */
+export function objectFromEntries<TKey extends Key, TValue>(
+    entries: Iterable<readonly [key: TKey, value: TValue]>
+): Record<TKey, TValue> {
+    return Object.assign(emptyObject(), Object.fromEntries(entries)) as Record<TKey, TValue>;
+}
+
 /** The string property names of `T`. */
 export type StringKey<T extends object> = T extends Record<infer K, unknown> ? K & string : never;
 
