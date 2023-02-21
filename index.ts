@@ -390,7 +390,7 @@ export function mapObjectKeysFn<TValue, TNewKey extends Key = string>(
 }
 
 export type MapObjectValues<TObject extends object, TNewValue> = {
-    [TKey in string & keyof TObject]: TNewValue;
+    [TKey in StringKey<TObject>]: TNewValue;
 };
 
 /** Creates a new object with string-keyed properties of the specified object
