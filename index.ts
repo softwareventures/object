@@ -445,13 +445,11 @@ export function mapObjectValuesFn<T, U>(
  * specified object, filtered by the specified predicate. */
 export function filterObject<T extends object>(
     object: Readonly<T>,
-    predicate: (key: string & keyof T, value: T[string & keyof T]) => boolean
+    predicate: (key: StringKey<T>, value: StringKeyedValue<T>) => boolean
 ): Partial<StringKeyedProperties<T>> {
     return Object.assign(
         emptyObject(),
-        Object.fromEntries(
-            filter(entries(object), ([key, value]) => predicate(key, value as T[string & keyof T]))
-        )
+        Object.fromEntries(filter(entries(object), ([key, value]) => predicate(key, value)))
     );
 }
 
@@ -460,7 +458,7 @@ export function filterObject<T extends object>(
  * Returns a function that creates a new object that contains the string-keyed
  * properties of the specified object, filtered by the specified predicate. */
 export function filterObjectFn<T extends object>(
-    predicate: (key: string & keyof T, value: T[string & keyof T]) => boolean
+    predicate: (key: StringKey<T>, value: StringKeyedValue<T>) => boolean
 ): (object: Readonly<T>) => Partial<StringKeyedProperties<T>> {
     return object => filterObject(object, predicate);
 }
