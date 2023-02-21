@@ -13,6 +13,11 @@ export type PropertyValue<T extends object> = T[keyof T];
 /** The type of a key-value pair for properties of `T`. */
 export type Entry<T extends object> = [keyof T, T[keyof T]];
 
+/** The string-keyed properties of `T`. */
+export type StringKeyedProperties<T> = {
+    [K in string & keyof T]: T[K];
+};
+
 /** The type `T`, but with any callable or newable signatures removed. */
 export type NotFunction<T> = {[K in keyof T]: T[K]};
 
@@ -443,11 +448,6 @@ export function mapObjectValuesFn<T, U>(
 ): (object: Readonly<Record<string, T>>) => Record<string, U> {
     return object => mapObjectValues(object, f);
 }
-
-/** The string-keyed properties of `T`. */
-export type StringKeyedProperties<T> = {
-    [K in string & keyof T]: T[K];
-};
 
 /** Creates a new object that contains the string-keyed properties of the
  * specified object, filtered by the specified predicate. */
