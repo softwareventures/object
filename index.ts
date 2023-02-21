@@ -10,6 +10,9 @@ export type Key<T extends object = never> = keyof T;
 /** The type of a property value of `T`. */
 export type PropertyValue<T extends object> = T[keyof T];
 
+/** The type of a key-value pair for properties of `T`. */
+export type Entry<T extends object> = [keyof T, T[keyof T]];
+
 /** The type `T`, but with any callable or newable signatures removed. */
 export type NotFunction<T> = {[K in keyof T]: T[K]};
 
