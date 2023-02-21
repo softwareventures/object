@@ -75,7 +75,7 @@ export function objectFromEntries<TKey extends Key, TValue>(
 }
 
 /** The string property names of `T`. */
-export type StringKey<T extends object> = T extends Record<infer K, unknown> ? K & string : never;
+export type StringKey<T extends object> = Key<StringKeyedProperties<T>>;
 
 /** Returns an array of the object's own ennumerable string-keyed property names. */
 // @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.
