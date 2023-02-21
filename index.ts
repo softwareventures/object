@@ -312,10 +312,7 @@ export function mapObject<TValue, TNewKey extends Key, TNewValue>(
     object: Readonly<Record<string, TValue>>,
     f: (key: string, value: TValue) => readonly [TNewKey, TNewValue]
 ): Record<TNewKey, TNewValue> {
-    return Object.assign(
-        emptyObject(),
-        Object.fromEntries(map(entries(object), ([key, value]) => f(key, value)))
-    ) as Record<TNewKey, TNewValue>;
+    return objectFromEntries(map(entries(object), ([key, value]) => f(key, value)));
 }
 
 /** Curried variant of {@link mapObject}.
@@ -366,10 +363,7 @@ export function mapObjectKeys<TValue, TNewKey extends Key = string>(
     object: Readonly<Record<string, TValue>>,
     f: (key: string) => TNewKey
 ): Record<TNewKey, TValue> {
-    return Object.assign(
-        emptyObject(),
-        Object.fromEntries(map(entries(object), ([key, value]) => [f(key), value]))
-    ) as Record<TNewKey, TValue>;
+    return objectFromEntries(map(entries(object), ([key, value]) => [f(key), value]));
 }
 
 /** Curried variant of {@link mapObjectKeys}.
@@ -411,10 +405,7 @@ export function mapObjectValues<T, U>(
     object: Readonly<Record<string, T>>,
     f: (value: T, key: string) => U
 ): Record<string, U> {
-    return Object.assign(
-        emptyObject(),
-        Object.fromEntries(map(entries(object), ([key, value]) => [key, f(value, key)]))
-    );
+    return objectFromEntries(map(entries(object), ([key, value]) => [key, f(value, key)]));
 }
 
 /** Curried variant of {@link mapObjectValues}.
@@ -447,10 +438,9 @@ export function filterObject<T extends object>(
     object: Readonly<T>,
     predicate: (key: StringKey<T>, value: StringKeyedValue<T>) => boolean
 ): Partial<StringKeyedProperties<T>> {
-    return Object.assign(
-        emptyObject(),
-        Object.fromEntries(filter(entries(object), ([key, value]) => predicate(key, value)))
-    );
+    return objectFromEntries(
+        filter(entries(object), ([key, value]) => predicate(key, value))
+    ) as Partial<StringKeyedProperties<T>>;
 }
 
 /** Curried variant of {@link filterObject}.
@@ -485,10 +475,9 @@ export function filterObjectKeys<T extends object>(
     object: Readonly<T>,
     predicate: (key: StringKey<T>) => boolean
 ): Partial<StringKeyedProperties<T>> {
-    return Object.assign(
-        emptyObject(),
-        Object.fromEntries(filter(entries(object), ([key]) => predicate(key)))
-    );
+    return objectFromEntries(filter(entries(object), ([key]) => predicate(key))) as Partial<
+        StringKeyedProperties<T>
+    >;
 }
 
 /** Curried variant of {@link filterObjectKeys}.
@@ -537,10 +526,9 @@ export function filterObjectValues<T extends object>(
     object: Readonly<T>,
     predicate: (value: StringKeyedValue<T>) => boolean
 ): Partial<StringKeyedProperties<T>> {
-    return Object.assign(
-        emptyObject(),
-        Object.fromEntries(filter(entries(object), ([_, value]) => predicate(value)))
-    );
+    return objectFromEntries(filter(entries(object), ([_, value]) => predicate(value))) as Partial<
+        StringKeyedProperties<T>
+    >;
 }
 
 /** Curried variant of {@link filterObjectValues}.
