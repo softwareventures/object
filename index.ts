@@ -521,27 +521,25 @@ export type FilterObjectValues<T extends object, U extends StringKeyedValue<T>> 
     [K in StringKey<T>]: T[K] extends U ? T[K] : never;
 };
 
-export function filterObjectValues<T extends object, U extends T[string & keyof T]>(
+export function filterObjectValues<T extends object, U extends StringKeyedValue<T>>(
     object: Readonly<T>,
-    predicate: (value: T[string & keyof T]) => value is U
+    predicate: (value: StringKeyedValue<T>) => value is U
 ): FilterObjectValues<T, U>;
 
 /** Creates a new object that contains the string-keyed properties of the
  * specified object, filtered by the specified predicate. */
 export function filterObjectValues<T extends object>(
     object: Readonly<T>,
-    predicate: (value: T[string & keyof T]) => boolean
+    predicate: (value: StringKeyedValue<T>) => boolean
 ): Partial<StringKeyedProperties<T>>;
 
 export function filterObjectValues<T extends object>(
     object: Readonly<T>,
-    predicate: (value: T[string & keyof T]) => boolean
+    predicate: (value: StringKeyedValue<T>) => boolean
 ): Partial<StringKeyedProperties<T>> {
     return Object.assign(
         emptyObject(),
-        Object.fromEntries(
-            filter(entries(object), ([_, value]) => predicate(value as T[string & keyof T]))
-        )
+        Object.fromEntries(filter(entries(object), ([_, value]) => predicate(value)))
     );
 }
 
@@ -549,8 +547,8 @@ export function filterObjectValues<T extends object>(
  *
  * Returns a function that creates a new object that contains the string-keyed
  * properties of the specified object, filtered by the specified predicate. */
-export function filterObjectValuesFn<T extends object, U extends T[string & keyof T]>(
-    predicate: (value: T[string & keyof T]) => value is U
+export function filterObjectValuesFn<T extends object, U extends StringKeyedValue<T>>(
+    predicate: (value: StringKeyedValue<T>) => value is U
 ): (object: Readonly<T>) => FilterObjectValues<T, U>;
 
 /** Curried variant of {@link filterObjectValues}.
@@ -558,11 +556,11 @@ export function filterObjectValuesFn<T extends object, U extends T[string & keyo
  * Returns a function that creates a new object that contains the string-keyed
  * properties of the specified object, filtered by the specified predicate. */
 export function filterObjectValuesFn<T extends object>(
-    predicate: (value: T[string & keyof T]) => boolean
+    predicate: (value: StringKeyedValue<T>) => boolean
 ): (object: Readonly<T>) => Partial<StringKeyedProperties<T>>;
 
 export function filterObjectValuesFn<T extends object>(
-    predicate: (value: T[string & keyof T]) => boolean
+    predicate: (value: StringKeyedValue<T>) => boolean
 ): (object: Readonly<T>) => Partial<StringKeyedProperties<T>> {
     return object => filterObjectValues(object, predicate);
 }
