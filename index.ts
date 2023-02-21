@@ -519,8 +519,8 @@ export function filterObjectKeysFn<T extends object>(
     return object => filterObjectKeys(object, predicate);
 }
 
-export type FilterObjectValues<T, U extends T[string & keyof T]> = {
-    [K in string & keyof T]: T[K] extends U ? T[K] : never;
+export type FilterObjectValues<T extends object, U extends StringKeyedValue<T>> = {
+    [K in StringKey<T>]: T[K] extends U ? T[K] : never;
 };
 
 export function filterObjectValues<T extends object, U extends T[string & keyof T]>(
