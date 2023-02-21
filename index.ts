@@ -465,7 +465,7 @@ export function filterObjectFn<T extends object>(
     return object => filterObject(object, predicate);
 }
 
-export type FilterObjectKeys<T extends object, U extends string & keyof T> = {
+export type FilterObjectKeys<T extends object, U extends StringKey<T>> = {
     [K in U]: T[K];
 };
 
