@@ -21,6 +21,9 @@ export type StringKeyedProperties<T> = {
 /** The string property names of `T`. */
 export type StringKey<T extends object> = Key<StringKeyedProperties<T>>;
 
+/** The string-keyed property values of `T`. */
+export type StringKeyedValue<T extends object> = PropertyValue<StringKeyedProperties<T>>;
+
 /** The type `T`, but with any callable or newable signatures removed. */
 export type NotFunction<T> = {[K in keyof T]: T[K]};
 
@@ -84,9 +87,6 @@ export function keys<T>(object: T): Array<StringKey<T>>;
 /* @internal This implementation is for internal use only, the exported declaration is above */
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
 export const keys: <T>(object: T) => Array<StringKey<T>> = Object.keys;
-
-/** The string-keyed property values of `T`. */
-export type StringKeyedValue<T extends object> = PropertyValue<StringKeyedProperties<T>>;
 
 /** Returns an array of the object's own ennumerable string-keyed property
  * values. */
