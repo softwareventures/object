@@ -444,6 +444,7 @@ export function mapObjectValuesFn<T, U>(
     return object => mapObjectValues(object, f);
 }
 
+/** The string-keyed properties of `T`. */
 export type StringKeyedProperties<T> = {
     [K in string & keyof T]: T[K];
 };
