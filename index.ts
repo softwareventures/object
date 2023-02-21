@@ -11,7 +11,7 @@ export type NotFunction<T> = {[K in keyof T]: T[K]};
 
 /** Creates a new object with the specified properties and a null prototype. */
 export function object<T extends object>(properties: T): NotFunction<T> {
-    return Object.assign(Object.create(null), properties) as NotFunction<T>;
+    return Object.assign(emptyObject(), properties);
 }
 
 /** Creates a new empty object with a null prototype typed as a
@@ -24,7 +24,7 @@ export function emptyObject<T extends object>(): Partial<NotFunction<T>> {
 export function record<TKey extends Key, TValue>(
     properties?: Record<TKey, TValue>
 ): Record<TKey, TValue> {
-    return Object.assign(Object.create(null), properties) as Record<TKey, TValue>;
+    return Object.assign(emptyObject(), properties);
 }
 
 /** Creates a shallow copy of the specified object.
@@ -309,7 +309,7 @@ export function mapObject<TValue, TNewKey extends Key, TNewValue>(
     f: (key: string, value: TValue) => readonly [TNewKey, TNewValue]
 ): Record<TNewKey, TNewValue> {
     return Object.assign(
-        Object.create(null),
+        emptyObject(),
         Object.fromEntries(map(entries(object), ([key, value]) => f(key, value)))
     ) as Record<TNewKey, TNewValue>;
 }
@@ -363,7 +363,7 @@ export function mapObjectKeys<TValue, TNewKey extends Key = string>(
     f: (key: string) => TNewKey
 ): Record<TNewKey, TValue> {
     return Object.assign(
-        Object.create(null),
+        emptyObject(),
         Object.fromEntries(map(entries(object), ([key, value]) => [f(key), value]))
     ) as Record<TNewKey, TValue>;
 }
@@ -408,9 +408,9 @@ export function mapObjectValues<T, U>(
     f: (value: T, key: string) => U
 ): Record<string, U> {
     return Object.assign(
-        Object.create(null),
+        emptyObject(),
         Object.fromEntries(map(entries(object), ([key, value]) => [key, f(value, key)]))
-    ) as Record<string, U>;
+    );
 }
 
 /** Curried variant of {@link mapObjectValues}.
@@ -448,13 +448,13 @@ export function filterObject<T extends object>(
     predicate: (key: string & keyof T, value: T[string & keyof T]) => boolean
 ): Partial<StringKeyedProperties<T>> {
     return Object.assign(
-        Object.create(null),
+        emptyObject(),
         Object.fromEntries(
             filter(entries(object), ([key, value]) =>
                 predicate(key as string & keyof T, value as T[string & keyof T])
             )
         )
-    ) as Partial<StringKeyedProperties<T>>;
+    );
 }
 
 /** Curried variant of {@link filterObject}.
@@ -490,9 +490,9 @@ export function filterObjectKeys<T extends object>(
     predicate: (key: string & keyof T) => boolean
 ): Partial<StringKeyedProperties<T>> {
     return Object.assign(
-        Object.create(null),
+        emptyObject(),
         Object.fromEntries(filter(entries(object), ([key]) => predicate(key as string & keyof T)))
-    ) as Partial<StringKeyedProperties<T>>;
+    );
 }
 
 /** Curried variant of {@link filterObjectKeys}.
@@ -542,11 +542,11 @@ export function filterObjectValues<T extends object>(
     predicate: (value: T[string & keyof T]) => boolean
 ): Partial<StringKeyedProperties<T>> {
     return Object.assign(
-        Object.create(null),
+        emptyObject(),
         Object.fromEntries(
             filter(entries(object), ([_, value]) => predicate(value as T[string & keyof T]))
         )
-    ) as Partial<StringKeyedProperties<T>>;
+    );
 }
 
 /** Curried variant of {@link filterObjectValues}.
