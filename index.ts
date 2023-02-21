@@ -1,11 +1,11 @@
 import {filter, map} from "@softwareventures/iterable";
 
-/** Union of all types that can be used as the key for property access.
+/** The type of a property key of `T`.
  *
- * The type of `x` in the expression `o[x]` (for arbitrary `o`).
+ * If `T` is not specified, the type of a property key of any object.
  *
- * As of TypeScript 4.9, equivalent to `string | number | symbol`. */
-export type Key = keyof never;
+ * As of TypeScript 4.9, `Key` is equivalent to `string | number | symbol`. */
+export type Key<T extends object = never> = keyof T;
 
 /** The type `T`, but with any callable or newable signatures removed. */
 export type NotFunction<T> = {[K in keyof T]: T[K]};
