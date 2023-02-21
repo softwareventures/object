@@ -98,11 +98,7 @@ export function values<T extends object>(object: T): Array<StringKeyedValue<T>>;
 export const values: <T extends object>(object: T) => Array<StringKeyedValue<T>> = Object.values;
 
 /** Key-value pairs of the string-keyed properties of `T`. */
-export type StringKeyedEntry<T extends object> = T extends Readonly<Record<infer K, unknown>>
-    ? K extends string
-        ? [K, T[K]]
-        : never
-    : never;
+export type StringKeyedEntry<T extends object> = Entry<StringKeyedProperties<T>>;
 
 /** Returns an array of the object's own ennumerable string-keyed property
  * `[key, value]` pairs. */
@@ -454,9 +450,7 @@ export function filterObject<T extends object>(
     return Object.assign(
         emptyObject(),
         Object.fromEntries(
-            filter(entries(object), ([key, value]) =>
-                predicate(key as string & keyof T, value as T[string & keyof T])
-            )
+            filter(entries(object), ([key, value]) => predicate(key, value as T[string & keyof T]))
         )
     );
 }
@@ -495,7 +489,7 @@ export function filterObjectKeys<T extends object>(
 ): Partial<StringKeyedProperties<T>> {
     return Object.assign(
         emptyObject(),
-        Object.fromEntries(filter(entries(object), ([key]) => predicate(key as string & keyof T)))
+        Object.fromEntries(filter(entries(object), ([key]) => predicate(key)))
     );
 }
 
