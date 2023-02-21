@@ -86,11 +86,7 @@ export function keys<T>(object: T): Array<StringKey<T>>;
 export const keys: <T>(object: T) => Array<StringKey<T>> = Object.keys;
 
 /** The string-keyed property values of `T`. */
-export type StringKeyedValue<T extends object> = T extends Record<infer K, unknown>
-    ? K extends string
-        ? T[K]
-        : never
-    : never;
+export type StringKeyedValue<T extends object> = PropertyValue<StringKeyedProperties<T>>;
 
 /** Returns an array of the object's own ennumerable string-keyed property
  * values. */
