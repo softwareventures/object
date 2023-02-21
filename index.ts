@@ -18,6 +18,9 @@ export type StringKeyedProperties<T> = {
     [K in string & keyof T]: T[K];
 };
 
+/** The string property names of `T`. */
+export type StringKey<T extends object> = Key<StringKeyedProperties<T>>;
+
 /** The type `T`, but with any callable or newable signatures removed. */
 export type NotFunction<T> = {[K in keyof T]: T[K]};
 
@@ -73,9 +76,6 @@ export function objectFromEntries<TKey extends Key, TValue>(
 ): Record<TKey, TValue> {
     return Object.assign(emptyObject(), Object.fromEntries(entries)) as Record<TKey, TValue>;
 }
-
-/** The string property names of `T`. */
-export type StringKey<T extends object> = Key<StringKeyedProperties<T>>;
 
 /** Returns an array of the object's own ennumerable string-keyed property names. */
 // @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.
