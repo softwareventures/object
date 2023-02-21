@@ -7,6 +7,7 @@ import {filter, map} from "@softwareventures/iterable";
  * As of TypeScript 4.9, equivalent to `string | number | symbol`. */
 export type Key = keyof never;
 
+/** The type `T`, but with any callable or newable signatures removed. */
 export type NotFunction<T> = {[K in keyof T]: T[K]};
 
 /** Creates a new object with the specified properties and a null prototype. */
