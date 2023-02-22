@@ -594,18 +594,3 @@ export function excludeNullProperties<T extends object>(
 ): ExcludeNullProperties<T> {
     return filterObjectValues(object, isNotNull) as ExcludeNullProperties<T>;
 }
-
-export function forEach<T>(
-    dictionary: Readonly<Record<string, T>>,
-    f: (value: T, key: string) => void
-): void {
-    for (const [key, value] of entries(dictionary)) {
-        f(value, key);
-    }
-}
-
-export function forEachFn<T>(
-    f: (value: T, key: string) => void
-): (dictionary: Readonly<Record<string, T>>) => void {
-    return dictionary => void forEach(dictionary, f);
-}
