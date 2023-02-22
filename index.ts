@@ -354,19 +354,7 @@ export type MapObjectValues<TObject extends object, TNewValue> = {
 export function mapObjectValues<TObject extends object, TNewValue>(
     object: TObject,
     f: (value: StringKeyedValue<TObject>, key: StringKey<TObject>) => TNewValue
-): MapObjectValues<TObject, TNewValue>;
-
-/** Creates a new object with string-keyed properties of the specified object
- * mapped to new values according to the specified mapping function. */
-export function mapObjectValues<T, U>(
-    object: Readonly<Record<string, T>>,
-    f: (value: T, key: string) => U
-): Record<string, U>;
-
-export function mapObjectValues<T, U>(
-    object: Readonly<Record<string, T>>,
-    f: (value: T, key: string) => U
-): Record<string, U> {
+): MapObjectValues<TObject, TNewValue> {
     return objectFromEntries(map(entries(object), ([key, value]) => [key, f(value, key)]));
 }
 
@@ -377,20 +365,7 @@ export function mapObjectValues<T, U>(
  * mapping function. */
 export function mapObjectValuesFn<TObject extends object, TNewValue>(
     f: (value: StringKeyedValue<TObject>, key: StringKey<TObject>) => TNewValue
-): (object: TObject) => MapObjectValues<TObject, TNewValue>;
-
-/** Curried variant of {@link mapObjectValues}.
- *
- * Returns a function that creates a new object with string-keyed properties
- * of the specified object mapped to new values according to the specified
- * mapping function. */
-export function mapObjectValuesFn<T, U>(
-    f: (value: T, key: string) => U
-): (object: Readonly<Record<string, T>>) => Record<string, U>;
-
-export function mapObjectValuesFn<T, U>(
-    f: (value: T, key: string) => U
-): (object: Readonly<Record<string, T>>) => Record<string, U> {
+): (object: TObject) => MapObjectValues<TObject, TNewValue> {
     return object => mapObjectValues(object, f);
 }
 
