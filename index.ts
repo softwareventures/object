@@ -1,4 +1,5 @@
 import {filter, map} from "@softwareventures/iterable";
+import {isNotNull} from "@softwareventures/nullable";
 
 /** The type of a property key of `T`.
  *
@@ -584,14 +585,14 @@ export function excludeObjectValuesFn<T extends object>(
     return object => excludeObjectValues(object, predicate);
 }
 
-export function excludeNull<T>(
-    dictionary: Readonly<Record<string, T | undefined | null>>
-): Record<string, T> {
-    return filterObjectValues(dictionary, notNull);
-}
+export type ExcludeNullProperties<T extends object> = {
+    [K in StringKey<T>]?: NonNullable<T[K]>;
+};
 
-function notNull<T>(value: T | undefined | null): value is T {
-    return value != null;
+export function excludeNullProperties<T extends object>(
+    object: Readonly<T>
+): ExcludeNullProperties<T> {
+    return filterObjectValues(object, isNotNull) as ExcludeNullProperties<T>;
 }
 
 export function forEach<T>(

@@ -716,7 +716,7 @@
     "@softwareventures/ordered" "^0.2.2 || ^1.0.0 || ^2.0.0"
     tslib "2.4.1"
 
-"@softwareventures/nullable@3.1.0", "@softwareventures/nullable@^1.0.0 || ^1.2.1 || ^2.0.0 || ^3.0.0":
+"@softwareventures/nullable@^1.0.0 || ^1.2.1 || ^2.0.0 || ^3.0.0", "@softwareventures/nullable@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@softwareventures/nullable/-/nullable-3.1.0.tgz#fa90b5c37cd38c0f2da2727e886e4bdfa36526b8"
   integrity sha512-iVrju9OeZsBk1itOijs+OFVLWpZqlEMEe8tbfhvqkb5bn7/quBA/ohu4fLL57EW5Ulsi3m6oqrolDzMxggITbA==
@@ -5418,6 +5418,11 @@ trim-newlines@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/trim-newlines/-/trim-newlines-3.0.1.tgz#260a5d962d8b752425b32f3a7db0dcacd176c144"
   integrity sha512-c1PTsA3tYrIsLGkJkzHF+w9F2EyxfXGo4UyJc4pFL++FMjnq0HJS69T3M7d//gKrFKwy429bouPescbjecU+Zw==
+
+ts-expect@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/ts-expect/-/ts-expect-1.3.0.tgz#3f8d3966e0e22b5e2bb88337eb99db6816a4c1cf"
+  integrity sha512-e4g0EJtAjk64xgnFPD6kTBUtpnMVzDrMb12N1YZV0VvSlhnVT3SGxiYTLdGy8Q5cYHOIC/FAHmZ10eGrAguicQ==
 
 ts-node@10.9.1, ts-node@^10.8.1:
   version "10.9.1"

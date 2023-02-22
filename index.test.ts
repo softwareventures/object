@@ -1,8 +1,10 @@
 import {notNull} from "@softwareventures/nullable";
 import test from "ava";
+import {expectType} from "ts-expect";
 import {
     copy,
     entries,
+    excludeNullProperties,
     filterObject,
     filterObjectKeys,
     filterObjectValues,
@@ -162,6 +164,20 @@ test("filterObjectValues", t => {
         filterObjectValues(object, value => value % 2 === 0),
         {b: 2, e: 24}
     );
+});
+
+test("excludeNullProperties", t => {
+    const o = {
+        a: 1,
+        b: null as 2 | null,
+        c: 3,
+        d: 4,
+        e: undefined
+    } as const;
+
+    const o2 = excludeNullProperties(o);
+    expectType<{a?: 1; b?: 2; c?: 3; d?: 4}>(o2);
+    t.deepEqual(o2, {a: 1, c: 3, d: 4});
 });
 
 interface Furniture {
