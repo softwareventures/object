@@ -509,6 +509,25 @@ export function excludeObjectEntriesFn<T extends object>(
     return object => excludeObjectEntries(object, predicate);
 }
 
+/** Creates a new object that contains the string-keyed properties of the
+ * specified object, excluded by the specified predicate. */
+export function excludeObjectKeys<T extends object>(
+    object: Readonly<T>,
+    predicate: (key: StringKey<T>) => boolean
+): Partial<StringKeyedProperties<T>> {
+    return filterObjectKeys(object, key => !predicate(key));
+}
+
+/** Curried variant of {@link excludeObjectKeys}.
+ *
+ * Returns a function that creates a new object that contains the string-keyed
+ * properties of the specified object, excluded by the specified predicate. */
+export function excludeObjectKeysFn<T extends object>(
+    predicate: (key: StringKey<T>) => boolean
+): (object: Readonly<T>) => Partial<StringKeyedProperties<T>> {
+    return object => excludeObjectKeys(object, predicate);
+}
+
 export function excludeNull<T>(
     dictionary: Readonly<Record<string, T | undefined | null>>
 ): Record<string, T> {
