@@ -82,5 +82,8 @@
   },
   "release": {
     "extends": "@softwareventures/semantic-release-config"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
