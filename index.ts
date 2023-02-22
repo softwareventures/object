@@ -321,10 +321,10 @@ export function mapObjectFn<TObject extends object, TNewKey extends Key, TNewVal
  *
  * If the mapping function returns the same key twice, then later values will
  * overwrite earlier ones. */
-export function mapObjectKeys<TValue, TNewKey extends Key = string>(
-    object: Readonly<Record<string, TValue>>,
-    f: (key: string) => TNewKey
-): Record<TNewKey, TValue> {
+export function mapObjectKeys<TObject extends object, TNewKey extends Key = string>(
+    object: Readonly<TObject>,
+    f: (key: StringKey<TObject>) => TNewKey
+): Record<TNewKey, StringKeyedValue<TObject>> {
     return objectFromEntries(map(entries(object), ([key, value]) => [f(key), value]));
 }
 
@@ -339,9 +339,9 @@ export function mapObjectKeys<TValue, TNewKey extends Key = string>(
  *
  * If the mapping function returns the same key twice, then later values will
  * overwrite earlier ones. */
-export function mapObjectKeysFn<TValue, TNewKey extends Key = string>(
-    f: (key: string) => TNewKey
-): (object: Readonly<Record<string, TValue>>) => Record<TNewKey, TValue> {
+export function mapObjectKeysFn<TObject extends object, TNewKey extends Key = string>(
+    f: (key: StringKey<TObject>) => TNewKey
+): (object: Readonly<TObject>) => Record<TNewKey, StringKeyedValue<TObject>> {
     return object => mapObjectKeys(object, f);
 }
 
