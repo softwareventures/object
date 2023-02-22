@@ -528,6 +528,62 @@ export function excludeObjectKeysFn<T extends object>(
     return object => excludeObjectKeys(object, predicate);
 }
 
+export type ExcludeObjectValues<
+    TObject extends object,
+    TExclude extends StringKeyedValue<TObject>
+> = {
+    [K in StringKey<TObject>]: TObject[K] extends TExclude ? never : TObject[K];
+};
+
+/** Creates a new object that contains the string-keyed properties of the
+ * specified object, excluded by the specified predicate. */
+export function excludeObjectValues<
+    TObject extends object,
+    TExclude extends StringKeyedValue<TObject>
+>(
+    object: Readonly<TObject>,
+    predicate: (value: StringKeyedValue<TObject>) => value is TExclude
+): ExcludeObjectValues<TObject, TExclude>;
+
+/** Creates a new object that contains the string-keyed properties of the
+ * specified object, excluded by the specified predicate. */
+export function excludeObjectValues<T extends object>(
+    object: Readonly<T>,
+    predicate: (value: StringKeyedValue<T>) => boolean
+): Partial<StringKeyedProperties<T>>;
+
+export function excludeObjectValues<T extends object>(
+    object: Readonly<T>,
+    predicate: (value: StringKeyedValue<T>) => boolean
+): Partial<StringKeyedProperties<T>> {
+    return filterObjectValues(object, value => !predicate(value));
+}
+
+/** Curried variant of {@link excludeObjectValues}.
+ *
+ * Returns a function that creates a new object that contains the string-keyed
+ * properties of the specified object, excluded by the specified predicate. */
+export function excludeObjectValuesFn<
+    TObject extends object,
+    TExclude extends StringKeyedValue<TObject>
+>(
+    predicate: (value: StringKeyedValue<TObject>) => value is TExclude
+): (object: Readonly<TObject>) => ExcludeObjectValues<TObject, TExclude>;
+
+/** Curried variant of {@link excludeObjectValues}.
+ *
+ * Returns a function that creates a new object that contains the string-keyed
+ * properties of the specified object, excluded by the specified predicate. */
+export function excludeObjectValuesFn<T extends object>(
+    predicate: (value: StringKeyedValue<T>) => boolean
+): (object: Readonly<T>) => Partial<StringKeyedProperties<T>>;
+
+export function excludeObjectValuesFn<T extends object>(
+    predicate: (value: StringKeyedValue<T>) => boolean
+): (object: Readonly<T>) => Partial<StringKeyedProperties<T>> {
+    return object => excludeObjectValues(object, predicate);
+}
+
 export function excludeNull<T>(
     dictionary: Readonly<Record<string, T | undefined | null>>
 ): Record<string, T> {
