@@ -289,28 +289,9 @@ export function mergeObjectsFn<K extends Key, T>(
  *
  * If the mapping function returns the same key twice, then later values will
  * overwrite earlier ones. */
-export function mapObject<T, U>(
-    object: Readonly<Record<string, T>>,
-    f: (key: string, value: T) => readonly [string, U]
-): Record<string, U>;
-
-/** Creates a new object with properties mapped from the string-keyed
- * properties of the specified object according to the specified mapping
- * function.
- *
- * Only the string-keyed properties of the input object are considered, but
- * the mapping function may produce keys of any suitable type.
- *
- * If the mapping function returns the same key twice, then later values will
- * overwrite earlier ones. */
-export function mapObject<TValue, TNewKey extends Key, TNewValue>(
-    object: Readonly<Record<string, TValue>>,
-    f: (key: string, value: TValue) => readonly [TNewKey, TNewValue]
-): Record<TNewKey, TNewValue>;
-
-export function mapObject<TValue, TNewKey extends Key, TNewValue>(
-    object: Readonly<Record<string, TValue>>,
-    f: (key: string, value: TValue) => readonly [TNewKey, TNewValue]
+export function mapObject<TObject extends object, TNewKey extends Key, TNewValue>(
+    object: Readonly<TObject>,
+    f: (key: StringKey<TObject>, value: StringKeyedValue<TObject>) => readonly [TNewKey, TNewValue]
 ): Record<TNewKey, TNewValue> {
     return objectFromEntries(map(entries(object), ([key, value]) => f(key, value)));
 }
@@ -326,28 +307,9 @@ export function mapObject<TValue, TNewKey extends Key, TNewValue>(
  *
  * If the mapping function returns the same key twice, then later values will
  * overwrite earlier ones. */
-export function mapObjectFn<T, U>(
-    f: (key: string, value: T) => readonly [string, U]
-): (object: Readonly<Record<string, T>>) => Record<string, U>;
-
-/** Curried variant of {@link mapObject}.
- *
- * Returns a function that creates a new object with properties mapped from the
- * string-keyed properties of the specified object according to the specified
- * mapping function.
- *
- * Only the string-keyed properties of the input object are considered, but
- * the mapping function may produce keys of any suitable type.
- *
- * If the mapping function returns the same key twice, then later values will
- * overwrite earlier ones. */
-export function mapObjectFn<TValue, TNewKey extends Key, TNewValue>(
-    f: (key: string, value: TValue) => readonly [TNewKey, TNewValue]
-): (object: Readonly<Record<string, TValue>>) => Record<TNewKey, TNewValue>;
-
-export function mapObjectFn<TValue, TNewKey extends Key, TNewValue>(
-    f: (key: string, value: TValue) => readonly [TNewKey, TNewValue]
-): (object: Readonly<Record<string, TValue>>) => Record<TNewKey, TNewValue> {
+export function mapObjectFn<TObject extends object, TNewKey extends Key, TNewValue>(
+    f: (key: StringKey<TObject>, value: StringKeyedValue<TObject>) => readonly [TNewKey, TNewValue]
+): (object: Readonly<TObject>) => Record<TNewKey, TNewValue> {
     return object => mapObject(object, f);
 }
 
