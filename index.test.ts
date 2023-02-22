@@ -52,6 +52,32 @@ test("copy", t => {
     t.is(o2[s], 3);
 });
 
+class Furniture {
+    public readonly hatstand = 3;
+    public readonly sofa = "comfy";
+}
+
+test("keys", t => {
+    t.deepEqual(keys(new Furniture()), ["hatstand", "sofa"]);
+    t.deepEqual(keys({a: 1, b: 2}), ["a", "b"]);
+});
+
+test("values", t => {
+    t.deepEqual(values(new Furniture()), [3, "comfy"]);
+    t.deepEqual(values({a: 1, b: 2}), [1, 2]);
+});
+
+test("entries", t => {
+    t.deepEqual(entries(new Furniture()), [
+        ["hatstand", 3],
+        ["sofa", "comfy"]
+    ]);
+    t.deepEqual(entries({a: 1, b: 2}), [
+        ["a", 1],
+        ["b", 2]
+    ]);
+});
+
 test("mergeObjects", t => {
     const s = Symbol();
     const a = {a: 1, b: 2, [s]: false} as const;
@@ -178,38 +204,4 @@ test("excludeNullProperties", t => {
     const o2 = excludeNullProperties(o);
     expectType<{a?: 1; b?: 2; c?: 3; d?: 4}>(o2);
     t.deepEqual(o2, {a: 1, c: 3, d: 4});
-});
-
-interface Furniture {
-    readonly hatstand: number;
-    readonly sofa: string;
-}
-
-test("keys", t => {
-    const furniture: Furniture = {hatstand: 3, sofa: "comfy"};
-    t.deepEqual(keys(furniture), ["hatstand", "sofa"]);
-    const dictionary: Record<string, number> = {a: 1, b: 2};
-    const dictionaryKeys: string[] = keys(dictionary);
-    t.deepEqual(dictionaryKeys, ["a", "b"]);
-});
-
-test("values", t => {
-    const furniture: Furniture = {hatstand: 3, sofa: "comfy"};
-    t.deepEqual(values(furniture), [3, "comfy"]);
-    const dictionary: Record<string, number> = {a: 1, b: 2};
-    t.deepEqual(values(dictionary), [1, 2]);
-});
-
-test("entries", t => {
-    const furniture: Furniture = {hatstand: 3, sofa: "comfy"};
-    t.deepEqual(entries(furniture), [
-        ["hatstand", 3],
-        ["sofa", "comfy"]
-    ]);
-    const dictionary: Record<string, number> = {a: 1, b: 2};
-    const dictionaryEntries: Array<[string, number]> = entries(dictionary);
-    t.deepEqual(dictionaryEntries, [
-        ["a", 1],
-        ["b", 2]
-    ]);
 });
