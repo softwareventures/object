@@ -353,7 +353,7 @@ export type MapObjectValues<TObject extends object, TNewValue> = {
  * mapped to new values according to the specified mapping function. */
 export function mapObjectValues<TObject extends object, TNewValue>(
     object: TObject,
-    f: (value: TObject[keyof TObject], key: keyof TObject) => TNewValue
+    f: (value: StringKeyedValue<TObject>, key: StringKey<TObject>) => TNewValue
 ): MapObjectValues<TObject, TNewValue>;
 
 /** Creates a new object with string-keyed properties of the specified object
@@ -376,7 +376,7 @@ export function mapObjectValues<T, U>(
  * of the specified object mapped to new values according to the specified
  * mapping function. */
 export function mapObjectValuesFn<TObject extends object, TNewValue>(
-    f: (value: TObject[keyof TObject], key: keyof TObject) => TNewValue
+    f: (value: StringKeyedValue<TObject>, key: StringKey<TObject>) => TNewValue
 ): (object: TObject) => MapObjectValues<TObject, TNewValue>;
 
 /** Curried variant of {@link mapObjectValues}.
