@@ -86,11 +86,11 @@ export function objectFromEntries<TKey extends Key, TValue>(
 
 /** Returns an array of the object's own ennumerable string-keyed property names. */
 // @ts-ignore duplicate identifier: This is the exported declaration, the implementation is below.
-export function keys<T>(object: T): Array<StringKey<T>>;
+export function keys<T extends object>(object: T): Array<StringKey<T>>;
 
 /* @internal This implementation is for internal use only, the exported declaration is above */
 // @ts-ignore duplicate identifier: This is the actual implementation, the exported declaration is above.
-export const keys: <T>(object: T) => Array<StringKey<T>> = Object.keys;
+export const keys: <T extends object>(object: T) => Array<StringKey<T>> = Object.keys;
 
 /** Returns an array of the object's own ennumerable string-keyed property
  * values. */
