@@ -34,7 +34,7 @@
     "tslib": "2.6.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.6.7",
+    "@commitlint/cli": "17.7.1",
     "@commitlint/config-conventional": "17.6.7",
     "@commitlint/cz-commitlint": "17.6.7",
     "@softwareventures/eslint-config": "7.1.2",
