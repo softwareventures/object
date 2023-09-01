@@ -68,11 +68,15 @@ test("values", t => {
 });
 
 test("entries", t => {
-    t.deepEqual(entries(new Furniture()), [
+    const e1 = entries(new Furniture());
+    expectType<Array<["hatstand" | "sofa", 3 | "comfy"]>>(e1);
+    t.deepEqual(e1, [
         ["hatstand", 3],
         ["sofa", "comfy"]
     ]);
-    t.deepEqual(entries({a: 1, b: 2}), [
+    const e2 = entries({a: 1, b: 2} as const);
+    expectType<Array<["a" | "b", 1 | 2]>>(e2);
+    t.deepEqual(e2, [
         ["a", 1],
         ["b", 2]
     ]);
