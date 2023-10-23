@@ -65,19 +65,19 @@
     "@commitlint/types" "^17.8.1"
     ajv "^8.11.0"
 
-"@commitlint/cz-commitlint@17.8.0":
-  version "17.8.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/cz-commitlint/-/cz-commitlint-17.8.0.tgz#d58a6bcd172e441786a4cad114d6e1be870be7de"
-  integrity sha512-EGF4Kx83JiUia56LIDeVN8BEy+sfSU9uC7Sr9ZyX1iGq4tZeVdELXB80v3zNaAV6WsJcj1oR4VclGLQxwEDjKw==
+"@commitlint/cz-commitlint@17.8.1":
+  version "17.8.1"
+  resolved "https://registry.yarnpkg.com/@commitlint/cz-commitlint/-/cz-commitlint-17.8.1.tgz#748cc2c5108b1fa6fbe00208e43ee1f135f57ff2"
+  integrity sha512-7/13k+NxxqwYnrrb52g70qrXs5NQS7r/qV9GAwcoE/8LLWoziV38nsgELajFu6sNgai9X8d8IX5UyiB1M1zGjg==
   dependencies:
-    "@commitlint/ensure" "^17.6.7"
-    "@commitlint/load" "^17.8.0"
-    "@commitlint/types" "^17.4.4"
+    "@commitlint/ensure" "^17.8.1"
+    "@commitlint/load" "^17.8.1"
+    "@commitlint/types" "^17.8.1"
     chalk "^4.1.0"
     lodash.isplainobject "^4.0.6"
     word-wrap "^1.2.5"
 
-"@commitlint/ensure@^17.6.7", "@commitlint/ensure@^17.8.1":
+"@commitlint/ensure@^17.8.1":
   version "17.8.1"
   resolved "https://registry.yarnpkg.com/@commitlint/ensure/-/ensure-17.8.1.tgz#59183557844999dbb6aab6d03629a3d104d01a8d"
   integrity sha512-xjafwKxid8s1K23NFpL8JNo6JnY/ysetKo8kegVM7c8vs+kWLP8VrQq+NbhgVlmCojhEDbzQKp4eRXSjVOGsow==
@@ -120,7 +120,7 @@
     "@commitlint/rules" "^17.8.1"
     "@commitlint/types" "^17.8.1"
 
-"@commitlint/load@>6.1.1", "@commitlint/load@^17.8.0", "@commitlint/load@^17.8.1":
+"@commitlint/load@>6.1.1", "@commitlint/load@^17.8.1":
   version "17.8.1"
   resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-17.8.1.tgz#fa061e7bfa53281eb03ca8517ca26d66a189030c"
   integrity sha512-iF4CL7KDFstP1kpVUkT8K2Wl17h2yx9VaR1ztTc8vzByWWcbO/WaKwxsnCOqow9tVAlzPfo1ywk9m2oJ9ucMqA==
@@ -200,7 +200,7 @@
   dependencies:
     find-up "^5.0.0"
 
-"@commitlint/types@^17.4.4", "@commitlint/types@^17.8.1":
+"@commitlint/types@^17.8.1":
   version "17.8.1"
   resolved "https://registry.yarnpkg.com/@commitlint/types/-/types-17.8.1.tgz#883a0ad35c5206d5fef7bc6ce1bbe648118af44e"
   integrity sha512-PXDQXkAmiMEG162Bqdh9ChML/GJZo6vU+7F03ALKDK8zYc6SuAr47LjG7hGYRqUOz+WK0dU7bQ0xzuqFMdxzeQ==
