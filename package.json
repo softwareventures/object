@@ -16,11 +16,8 @@
   "license": "ISC",
   "scripts": {
     "fix": "tsc --noEmit && eslint . --fix && prettier --write .",
-    "postinstall": "husky install",
     "lint": "tsc --noEmit && eslint . && prettier --check .",
-    "prepack": "pinst --disable",
-    "postpack": "pinst --enable",
-    "prepare": "tsc",
+    "prepare": "tsc && husky install",
     "semantic-release": "semantic-release",
     "test": "ava"
   },
@@ -52,7 +49,6 @@
     "eslint-plugin-prefer-arrow": "1.2.3",
     "eslint-plugin-sonarjs": "0.23.0",
     "husky": "8.0.3",
-    "pinst": "3.0.0",
     "prettier": "2.8.8",
     "semantic-release": "19.0.5",
     "ts-expect": "1.3.0",
