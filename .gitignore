@@ -4,8 +4,15 @@
 *.js.map
 !/types/*.d.ts
 
-# Yarn
+# Yarn 2
 /node_modules
+/.pnp.*
+/.yarn/*
+!/.yarn/patches
+!/.yarn/plugins
+!/.yarn/releases
+!/.yarn/sdks
+!/.yarn/versions
 yarn-error.log
 
 # In case someone runs npm by accident

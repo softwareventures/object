@@ -16,8 +16,9 @@
   "license": "ISC",
   "scripts": {
     "fix": "tsc --noEmit && eslint . --fix && prettier --write .",
+    "postinstall": "husky",
     "lint": "tsc --noEmit && eslint . && prettier --check .",
-    "prepare": "tsc && husky",
+    "prepack": "tsc",
     "test": "ava"
   },
   "sideEffects": false,
@@ -37,6 +38,7 @@
     "@softwareventures/prettier-config": "4.0.0",
     "@softwareventures/semantic-release-config": "4.1.0",
     "@softwareventures/tsconfig": "7.3.0",
+    "@types/node": "^18.19.127",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
     "ava": "5.3.1",
@@ -50,6 +52,7 @@
     "eslint-plugin-sonarjs": "1.0.4",
     "husky": "9.1.7",
     "inquirer": "8.2.7",
+    "pinst": "3.0.0",
     "prettier": "2.8.8",
     "semantic-release": "19.0.5",
     "ts-expect": "1.3.0",
@@ -80,7 +83,7 @@
   "release": {
     "extends": "@softwareventures/semantic-release-config"
   },
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+  "packageManager": "yarn@4.10.2",
   "publishConfig": {
     "access": "public"
   }
