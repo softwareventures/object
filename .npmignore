@@ -3,6 +3,7 @@
 /tsconfig.test.json
 /.eslintignore
 /.github
+/.prettierignore
 /renovate.json
 /.snyk
 *.ts
