@@ -1139,7 +1139,7 @@ __metadata:
     "@softwareventures/precise-commits": "npm:4.0.23"
     "@softwareventures/prettier-config": "npm:4.0.0"
     "@softwareventures/semantic-release-config": "npm:5.1.1"
-    "@softwareventures/tsconfig": "npm:7.3.0"
+    "@softwareventures/tsconfig": "npm:8.1.1"
     "@types/node": "npm:^18.19.127"
     "@typescript-eslint/eslint-plugin": "npm:8.44.0"
     "@typescript-eslint/parser": "npm:8.44.0"
@@ -1161,7 +1161,7 @@ __metadata:
     ts-expect: "npm:1.3.0"
     ts-node: "npm:10.9.2"
     tslib: "npm:^2.8.1"
-    typescript: "npm:4.9.5"
+    typescript: "npm:5.9.2"
   languageName: unknown
   linkType: soft
 
@@ -1219,12 +1219,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@softwareventures/tsconfig@npm:7.3.0":
-  version: 7.3.0
-  resolution: "@softwareventures/tsconfig@npm:7.3.0"
+"@softwareventures/tsconfig@npm:8.1.1":
+  version: 8.1.1
+  resolution: "@softwareventures/tsconfig@npm:8.1.1"
   peerDependencies:
-    typescript: ^4.5.0 || ^5.0.0
-  checksum: 10c0/bb9fe2847f52dfea00748e79c1b35a6c200b916ed7115c96af4c4a6d73cb151b82dfb19eeb6a3fa3d7e8802f9692af4d2be961b97f4ac15be87594681e09e03d
+    typescript: ^5.2.2
+  checksum: 10c0/9a9e0dacacc9729e5d92c0a2e644e189ad81d009086f6ef37520c41334409df1c2a15137997bcf8bcc289d32aafe17cb8530876d0b63a0a85c87fe02ab237b24
   languageName: node
   linkType: hard
 
@@ -8412,13 +8412,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.9.5":
-  version: 4.9.5
-  resolution: "typescript@npm:4.9.5"
+"typescript@npm:5.9.2":
+  version: 5.9.2
+  resolution: "typescript@npm:5.9.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/5f6cad2e728a8a063521328e612d7876e12f0d8a8390d3b3aaa452a6a65e24e9ac8ea22beb72a924fd96ea0a49ea63bb4e251fb922b12eedfb7f7a26475e5c56
+  checksum: 10c0/cd635d50f02d6cf98ed42de2f76289701c1ec587a363369255f01ed15aaf22be0813226bff3c53e99d971f9b540e0b3cc7583dbe05faded49b1b0bed2f638a18
   languageName: node
   linkType: hard
 
@@ -8432,13 +8432,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>":
-  version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"
+"typescript@patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>":
+  version: 5.9.2
+  resolution: "typescript@patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>::version=5.9.2&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/e3333f887c6829dfe0ab6c1dbe0dd1e3e2aeb56c66460cb85c5440c566f900c833d370ca34eb47558c0c69e78ced4bfe09b8f4f98b6de7afed9b84b8d1dd06a1
+  checksum: 10c0/34d2a8e23eb8e0d1875072064d5e1d9c102e0bdce56a10a25c0b917b8aa9001a9cf5c225df12497e99da107dc379360bc138163c66b55b95f5b105b50578067e
   languageName: node
   linkType: hard
 
