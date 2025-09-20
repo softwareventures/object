@@ -23,7 +23,7 @@
   },
   "sideEffects": false,
   "engines": {
-    "node": "^14 || ^16 || >=18"
+    "node": "^18 || ^20 || ^22 || >=24"
   },
   "dependencies": {
     "@softwareventures/iterable": "^3.2.0",
