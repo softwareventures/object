@@ -3,6 +3,7 @@ import test from "ava";
 import {expectType} from "ts-expect";
 import type {Key} from "./index";
 import {
+    mergeMapObject,
     copy,
     entries,
     excludeNullProperties,
@@ -156,6 +157,37 @@ test("mapObjectValues", t => {
     t.deepEqual(
         mapObjectValues({a: 1, b: 2}, (value, key) => (value * 2).toString(10) + key),
         {a: "2a", b: "4b"}
+    );
+});
+
+test("mergeMapObject", t => {
+    const a = {
+        a: 1,
+        b: 2
+    } as const;
+
+    const sa = Symbol();
+    const sb = Symbol();
+
+    const symbols: Record<string, symbol> = {
+        a: sa,
+        b: sb
+    };
+
+    t.deepEqual(
+        mergeMapObject(a, (key, value) => ({
+            [notNull(symbols[key])]: value + 1,
+            [`a${key}`]: value + 2,
+            [`b${key}`]: value * 2
+        })),
+        {
+            [sa]: 2,
+            [sb]: 3,
+            aa: 3,
+            ab: 4,
+            ba: 2,
+            bb: 4
+        }
     );
 });
 

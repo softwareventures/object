@@ -386,6 +386,25 @@ export function mapObjectValuesFn<TObject extends object, TNewValue>(
     return object => mapObjectValues(object, f);
 }
 
+/** Creates a new object by calling the specified mapping function for each
+ * key-value pair in the specified object, and then merging the returned
+ * objects.
+ *
+ * Only the string-keyed properties of the input object are considered, but
+ * the mapping function may produce keys of any suitable type.
+ *
+ * If the mapping function returns multiple objects that have the same key,
+ * then later values will overwrite earlier ones. */
+export function mergeMapObject<TObject extends object, TNewKey extends Key, TNewValue>(
+    object: Readonly<TObject>,
+    f: (
+        key: StringKey<TObject>,
+        value: StringKeyedValue<TObject>
+    ) => Readonly<Record<TNewKey, TNewValue>>
+): Record<TNewKey, TNewValue> {
+    return mergeRecords(map(entries(object), ([key, value]) => f(key, value)));
+}
+
 /** Creates a new object that contains the string-keyed properties of the
  * specified object, filtered by the specified predicate. */
 export function filterObject<T extends object>(
