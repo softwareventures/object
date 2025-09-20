@@ -1,13 +1,20 @@
-/.idea/workspace.xml
-/.idea/tasks.xml
-/node_modules
-package-lock.json
-yarn-error.log
-npm-debug.log*
+# Build output
 *.js
 *.d.ts
 *.js.map
 !/types/*.d.ts
+
+# Yarn
+/node_modules
+yarn-error.log
+
+# In case someone runs npm by accident
+package-lock.json
+npm-debug.log*
+
+# Personal WebStorm IDE files
+/.idea/workspace.xml
+/.idea/tasks.xml
 
 # macOS
 .DS_Store
