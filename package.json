@@ -15,6 +15,7 @@
   "repository": "github:softwareventures/object",
   "license": "ISC",
   "scripts": {
+    "commit": "cz",
     "fix": "tsc --noEmit && eslint . --fix && prettier --write .",
     "postinstall": "husky",
     "lint": "tsc --noEmit && eslint . && prettier --check .",
