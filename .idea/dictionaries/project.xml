@@ -21,6 +21,7 @@
       <w>conrod</w>
       <w>contoso</w>
       <w>coord</w>
+      <w>corepack</w>
       <w>cors</w>
       <w>creatives</w>
       <w>crypto</w>
@@ -78,6 +79,7 @@
       <w>hevc</w>
       <w>highp</w>
       <w>hotseat</w>
+      <w>iana</w>
       <w>ibotta</w>
       <w>iframe</w>
       <w>imei</w>
@@ -226,6 +228,7 @@
       <w>winit</w>
       <w>wmode</w>
       <w>wordlist</w>
+      <w>workflows</w>
       <w>wrappy</w>
       <w>xalan</w>
       <w>xmlns</w>
