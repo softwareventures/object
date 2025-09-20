@@ -281,6 +281,22 @@ export function mergeObjectsFn<K extends Key, T>(
     return record => mergeObjects(record, ...records);
 }
 
+/** Creates a new record that contains the properties of all the specified
+ * records.
+ *
+ * If two or more of the specified records have properties with the same key,
+ * then the newly created record will contain the property value from the last
+ * such specified record. */
+export function mergeRecords<K extends Key, T>(
+    records: Iterable<Readonly<Record<K, T>>>
+): Record<K, T> {
+    const result = record<K, T>();
+    for (const record of records) {
+        Object.assign(result, record);
+    }
+    return result;
+}
+
 /** Creates a new object with properties mapped from the string-keyed
  * properties of the specified object according to the specified mapping
  * function.
