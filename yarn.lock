@@ -1130,7 +1130,7 @@ __metadata:
     "@softwareventures/prettier-config": "npm:4.0.0"
     "@softwareventures/semantic-release-config": "npm:5.1.1"
     "@softwareventures/tsconfig": "npm:8.1.1"
-    "@types/node": "npm:18.19.128"
+    "@types/node": "npm:18.19.129"
     "@typescript-eslint/eslint-plugin": "npm:8.45.0"
     "@typescript-eslint/parser": "npm:8.45.0"
     ava: "npm:6.4.1"
@@ -1295,12 +1295,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.19.128":
-  version: 18.19.128
-  resolution: "@types/node@npm:18.19.128"
+"@types/node@npm:18.19.129":
+  version: 18.19.129
+  resolution: "@types/node@npm:18.19.129"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10c0/ff84bfed98a10fcf5761c344ea599ff763859d777f8fd9eed12d81b0ed8c2877afa1befb2dd8b6f2a7f858da87a081afd1f7225df0767d305839d1e3e9b91e0e
+  checksum: 10c0/a5b9c49588d354994213fae1d6f4cfd9539be3d561a1ce4696763aa24b989d1bbb8e434230611583e3cd3fdebdf89347e2f705827c3b520561ccf8aa311a0cdc
   languageName: node
   linkType: hard
 
