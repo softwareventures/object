@@ -1287,11 +1287,11 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 25.0.2
-  resolution: "@types/node@npm:25.0.2"
+  version: 25.0.3
+  resolution: "@types/node@npm:25.0.3"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10c0/12c4044bf2e46ba3d313ddf6256ee3c88e336a62d129fe788eeab8ff2631b3df51eb31ade4cdc04552fbe51e285f0663c49b60c78acd31da2b9f2c86a84347e3
+  checksum: 10c0/b7568f0d765d9469621615e2bb257c7fd1953d95e9acbdb58dffb6627a2c4150d405a4600aa1ad8a40182a94fe5f903cafd3c0a2f5132814debd0e3bfd61f835
   languageName: node
   linkType: hard
 
@@ -3629,13 +3629,13 @@ __metadata:
   linkType: hard
 
 "fs-extra@npm:^11.0.0":
-  version: 11.3.2
-  resolution: "fs-extra@npm:11.3.2"
+  version: 11.3.3
+  resolution: "fs-extra@npm:11.3.3"
   dependencies:
     graceful-fs: "npm:^4.2.0"
     jsonfile: "npm:^6.0.1"
     universalify: "npm:^2.0.0"
-  checksum: 10c0/f5d629e1bb646d5dedb4d8b24c5aad3deb8cc1d5438979d6f237146cd10e113b49a949ae1b54212c2fbc98e2d0995f38009a9a1d0520f0287943335e65fe919b
+  checksum: 10c0/984924ff4104e3e9f351b658a864bf3b354b2c90429f57aec0acd12d92c4e6b762cbacacdffb4e745b280adce882e1f980c485d9f02c453f769ab4e7fc646ce3
   languageName: node
   linkType: hard
 
@@ -5155,9 +5155,9 @@ __metadata:
   linkType: hard
 
 "lodash-es@npm:^4.17.21":
-  version: 4.17.21
-  resolution: "lodash-es@npm:4.17.21"
-  checksum: 10c0/fb407355f7e6cd523a9383e76e6b455321f0f153a6c9625e21a8827d10c54c2a2341bd2ae8d034358b60e07325e1330c14c224ff582d04612a46a4f0479ff2f2
+  version: 4.17.22
+  resolution: "lodash-es@npm:4.17.22"
+  checksum: 10c0/5f28a262183cca43e08c580622557f393cb889386df2d8adf7c852bfdff7a84c5e629df5aa6c5c6274e83b38172f239d3e4e72e1ad27352d9ae9766627338089
   languageName: node
   linkType: hard
 
