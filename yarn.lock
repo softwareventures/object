@@ -1134,7 +1134,7 @@ __metadata:
     "@softwareventures/nullable": "npm:^3.1.0"
     "@softwareventures/precise-commits": "npm:4.0.23"
     "@softwareventures/prettier-config": "npm:4.0.0"
-    "@softwareventures/semantic-release-config": "npm:5.1.1"
+    "@softwareventures/semantic-release-config": "npm:5.2.0"
     "@softwareventures/tsconfig": "npm:8.1.1"
     "@types/node": "npm:18.19.130"
     "@typescript-eslint/eslint-plugin": "npm:8.56.1"
@@ -1201,17 +1201,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@softwareventures/semantic-release-config@npm:5.1.1":
-  version: 5.1.1
-  resolution: "@softwareventures/semantic-release-config@npm:5.1.1"
+"@softwareventures/semantic-release-config@npm:5.2.0":
+  version: 5.2.0
+  resolution: "@softwareventures/semantic-release-config@npm:5.2.0"
   dependencies:
     tslib: "npm:2.8.1"
   peerDependencies:
-    conventional-changelog-conventionalcommits: ^4.6.3 || ^5.0.0 || ^6.0.0 || ^7.0.0
+    conventional-changelog-conventionalcommits: ^4.6.3 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
     pinst: ">= 2.1.6"
-    semantic-release: ^17.0.7 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0 || ^22.0.0 || ^23.0.0
+    semantic-release: ^17.0.7 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0 || ^22.0.0 || ^23.0.0 || ^24.0.0 || ^25.0.0
     semantic-release-pinst: ^1.0.0
-  checksum: 10c0/1b14c3db31af3a62ceb9f184cb99903a4d012426c76f87f58e270887f8eee073228a4b410ee74ce58e9fdbac4dd00d172d82939984f0f51d7fd0849ac82ab5ff
+  checksum: 10c0/1e5779f094bbe6edc8b243f53145df664438dc8d2d0c8ba3d171c32c79470f3c48d980d5d2110ce115cb196f6a67c0bbc38c93cb25ce60aa6dafb547008c96f7
   languageName: node
   linkType: hard
 
