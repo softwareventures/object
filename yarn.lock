@@ -1141,7 +1141,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:8.56.1"
     ava: "npm:6.4.1"
     commitizen: "npm:4.3.1"
-    conventional-changelog-conventionalcommits: "npm:7.0.2"
+    conventional-changelog-conventionalcommits: "npm:9.3.0"
     eslint: "npm:8.57.1"
     eslint-config-prettier: "npm:10.1.8"
     eslint-plugin-import: "npm:2.32.0"
@@ -2450,7 +2450,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-conventionalcommits@npm:7.0.2, conventional-changelog-conventionalcommits@npm:^7.0.2":
+"conventional-changelog-conventionalcommits@npm:9.3.0":
+  version: 9.3.0
+  resolution: "conventional-changelog-conventionalcommits@npm:9.3.0"
+  dependencies:
+    compare-func: "npm:^2.0.0"
+  checksum: 10c0/36be9435bb1f6e97bc729a1e69471851b6621054980617dc9a82c03221de5f9c21cd2369308c364f89b2383bd596071f90c8c71efdbe7a2908f91a935685fc76
+  languageName: node
+  linkType: hard
+
+"conventional-changelog-conventionalcommits@npm:^7.0.2":
   version: 7.0.2
   resolution: "conventional-changelog-conventionalcommits@npm:7.0.2"
   dependencies:
