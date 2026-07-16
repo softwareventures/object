@@ -39,7 +39,7 @@
     "@softwareventures/precise-commits": "4.0.26",
     "@softwareventures/prettier-config": "4.0.0",
     "@softwareventures/semantic-release-config": "5.2.0",
-    "@softwareventures/tsconfig": "8.1.2",
+    "@softwareventures/tsconfig": "9.0.0",
     "@types/node": "18.19.130",
     "@typescript-eslint/eslint-plugin": "8.63.0",
     "@typescript-eslint/parser": "8.63.0",
